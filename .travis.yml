@@ -4,7 +4,9 @@ env:
 before_script: 
   - cd minimal-scala/
   - wget http://downloads.typesafe.com/play/2.2.3/play-${PLAY_VERSION}.zip
-  - unzip -q play-${PLAY_VERSION}.zip 
+  - wget http://downloads.typesafe.com/scala/2.11.1/scala-2.11.1.tgz
+  - unzip -q play-${PLAY_VERSION}.zip
+  - tar -xvf scala-2.11.1.tgz
 script: play-${PLAY_VERSION}/play test
 notifications:
   # Email notifications are disabled to not annoy anybody.
