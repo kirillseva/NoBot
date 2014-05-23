@@ -1,6 +1,6 @@
 language: scala # to trigger the build on JVM worker ('language: java' works the same)
 env:
-  - PLAY_VERSION=2.3.0-RC2 # Latest 2.1.x
+  - PLAY_VERSION=2.3.0-RC2 # Change to the latest version here
 before_script: 
   - wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
   - unzip -q play-${PLAY_VERSION}.zip 
