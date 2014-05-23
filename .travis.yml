@@ -4,7 +4,7 @@ env:
 scala:
   - 2.10.3
 before_script: 
-  - cd hello-play/
+  - cd hello-scala/
   - wget http://downloads.typesafe.com/play/2.2.3/play-${PLAY_VERSION}.zip
   - unzip -q play-${PLAY_VERSION}.zip
 script: play-${PLAY_VERSION}/play test
