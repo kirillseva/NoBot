@@ -3,7 +3,7 @@ env:
   - PLAY_VERSION=2.2.3 # Change to the latest version here
 scala:
   - 2.10.3
-before_script: 
+before_script:
   - cd weather-demo/
   - wget http://downloads.typesafe.com/play/2.2.3/play-${PLAY_VERSION}.zip
   - unzip -q play-${PLAY_VERSION}.zip
