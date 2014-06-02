@@ -18,7 +18,6 @@ object WeatherC extends Controller {
 
     val loc = "Pittsburgh"
     val celc = true
-    val placeid = 2473224 //no longer used
 
     val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=metric"
 
@@ -32,7 +31,7 @@ object WeatherC extends Controller {
       System.out.println(desc)
 */
 
-      val W_out = Weather(placeid, loc, celc, temp, humidity, desc, 30)
+      val W_out = Weather(loc, celc, temp, humidity, desc, 30)
 
       Ok(views.html.weather(W_out))
     }
