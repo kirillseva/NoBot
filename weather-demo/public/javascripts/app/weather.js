@@ -16,7 +16,5 @@
     $http.get('http://localhost:9000/weatherC')
        .then(function(res){
           $scope.weatherdata = res.data;
-        });
-
-
+    });
 });

@@ -5,8 +5,21 @@
         <title>@title</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/ui-lightness/jquery-ui-1.10.4.custom.min.css")" />
         <script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/app/weather.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.10.2.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui-1.10.4.custom.min.js")"></script>
+
+        <style>
+        #draggable { width: 200px; height: 180px; padding: 0.5em; }
+        </style>
+        <script>
+        $(function() {
+          $( "#draggable" ).draggable();
+        });
+        </script>
+
     </head>
     <body ng-controller="WeatherController as Weather" >
         <div class = "weather">
@@ -17,33 +30,38 @@
             </div>
           </div>
 
-          <label>Choose Measurement System</label>
-          <div class="form-group">
-              <div class="radio">
-                  <label>
-                      <input type="radio" name="CorF" value="true" ng-model="celcius">
-                      °C
-                  </label>
-              </div>
-              <div class="radio">
-                  <label>
-                      <input type="radio" name="CorF" value="false" ng-model="celcius">
-                      °F
-                  </label>
-              </div>
-          </div>
+    <div id="draggable" class="ui-widget-content">
+            <label>Choose Measurement System</label>
+            <div class="form-group">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="CorF" value="true" ng-model="celcius">
+                        °C
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="CorF" value="false" ng-model="celcius">
+                        °F
+                    </label>
+                </div>
+            </div>
 
-          <dl ng-show="Weather.getCelc()">
-            <dt>Weather in {{weatherdata.list[0].name}}</dt>
-            <dd>{{weatherdata.list[0].main.temp}}°C, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
-            <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
-          </dl>
-          <dl ng-hide="Weather.getCelc()">
-            <dt>Weather in {{weatherdata.list[0].name}}</dt>
-            <dd>{{weatherdata.list[0].main.temp*9/5 + 32}}°F, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
-            <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
-          </dl>
-        </div>
+            <dl ng-show="Weather.getCelc()">
+              <dt>Weather in {{weatherdata.list[0].name}}</dt>
+              <dd>{{weatherdata.list[0].main.temp}}°C, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+              <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+            </dl>
+            <dl ng-hide="Weather.getCelc()">
+              <dt>Weather in {{weatherdata.list[0].name}}</dt>
+              <dd>{{weatherdata.list[0].main.temp*9/5 + 32}}°F, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+              <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+            </dl>
+
+    </div>
+
+    </div>
+
 
     </body>
 </html>
