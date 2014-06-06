@@ -1,0 +1,49 @@
+@(title: String)(implicit lang: Lang)
+<!DOCTYPE html>
+<html ng-app="Cobot">
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" />
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/app/weather.js")"></script>
+    </head>
+    <body ng-controller="WeatherController as Weather" >
+        <div class = "weather">
+
+          <div class = "navbar navbar-fixed-top">
+            <div class = "navbar-inner">
+                <h1 class="text-left">Cobot Nobot</h1>
+            </div>
+          </div>
+
+          <label>Choose Measurement System</label>
+          <div class="form-group">
+              <div class="radio">
+                  <label>
+                      <input type="radio" name="CorF" value="true" ng-model="celcius">
+                      °C
+                  </label>
+              </div>
+              <div class="radio">
+                  <label>
+                      <input type="radio" name="CorF" value="false" ng-model="celcius">
+                      °F
+                  </label>
+              </div>
+          </div>
+
+          <dl ng-show="Weather.getCelc()">
+            <dt>Weather in {{weatherdata.list[0].name}}</dt>
+            <dd>{{weatherdata.list[0].main.temp}}°C, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+            <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+          </dl>
+          <dl ng-hide="Weather.getCelc()">
+            <dt>Weather in {{weatherdata.list[0].name}}</dt>
+            <dd>{{weatherdata.list[0].main.temp*9/5 + 32}}°F, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+            <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+          </dl>
+        </div>
+
+    </body>
+</html>

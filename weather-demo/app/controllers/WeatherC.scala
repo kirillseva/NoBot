@@ -13,13 +13,20 @@ import play.api.libs.json._
 import play.api.libs.json.JsResult
 
 object WeatherC extends Controller {
-  def show = Action.async { implicit request =>
-    val W_out = Weather.stubWeather
-
+  def showC = Action.async { implicit request =>
     val loc = "Pittsburgh"
     val celc = true
-
     val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=metric"
+    WS.url(URL).get.map { response =>
+      Ok(response.json)
+    }
+
+  }
+
+  def showF = Action.async { implicit request =>
+    val loc = "Pittsburgh"
+    val celc = false
+    val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=imperial"
 
     WS.url(URL).get.map { response =>
       val humidity = (response.json \ "list" \\ "humidity")(0).as[Int]
@@ -33,7 +40,8 @@ object WeatherC extends Controller {
 
       val W_out = Weather(loc, celc, temp, humidity, desc, 30)
 
-      Ok(views.html.weather(W_out))
+      Ok(response.json)
+      //Ok(views.html.weather(W_out))
     }
 
   }
