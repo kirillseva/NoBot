@@ -1,0 +1,9 @@
+@(weather: Weather)(implicit lang: Lang)
+
+
+@main(Messages("application.name")) {
+  <dl class="weather">
+    <dt>@weather.city: @weather.description</dt>
+    <dd>@weather.temp degrees celcius, humidity: @weather.humidity%</dd>
+  </dl>
+}
