@@ -1,8 +1,8 @@
-@(title: String)(implicit lang: Lang)
+@(creator: Seq[String], eventName: Seq[String], time: Seq[String])(implicit lang: Lang)
 <!DOCTYPE html>
 <html ng-app="Cobot">
     <head>
-        <title>@title</title>
+        <title>CoBot NoBot</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/ui-lightness/jquery-ui-1.10.4.custom.min.css")" />
@@ -12,12 +12,23 @@
         <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui-1.10.4.custom.min.js")"></script>
 
         <style>
-        #draggable { width: 200px; height: 180px; padding: 0.5em; }
+          #draggable { width: 200px; height: 180px; padding: 0.5em; }
+          #draggableMSECalendar { width: 700px; height: 500px; padding: 1.5em; }
+          #draggableCalendar { width: 700px; height: 200px; padding: 1.5em; }
         </style>
+
         <script>
-        $(function() {
-          $( "#draggable" ).draggable();
-        });
+          $(function() {
+            $( "#draggable" ).draggable();
+          });
+
+          $(function() {
+            $( "#draggableMSECalendar" ).draggable();
+          });
+
+          $(function() {
+            $( "#draggableCalendar" ).draggable();
+          });
         </script>
 
     </head>
@@ -60,8 +71,45 @@
 
     </div>
 
+    <div id="draggableCalendar" class="ui-widget-content">
+
+        <table align="left" class="panel" width="700">
+
+          <tr>
+
+              <td align="left">
+                <h3>Event Creator</h3>
+                @creator.map { creator =>
+                    <dd>@creator</dd>
+                    <p>  </p>
+              }</td>
+
+              <td align="center">
+                <h3>Event Name</h3>
+                @eventName.map { eventName =>
+                    <dd>@eventName</dd>
+                    <p>  </p>
+              }</td>
+
+              <td align="right">
+                <h3>Start & End Times</h3>
+                @time.map { time =>
+                    <dd>@time</dd>
+              }</td>
+
+          </tr>
+
+        </table>
+
     </div>
 
+    <div id="draggableMSECalendar" class="ui-widget-content">
+
+        <iframe src="https://www.google.com/calendar/embed?src=asmgtes27669vbdibsiqd6kacs%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="700" height="500" frameborder="0" scrolling="no"></iframe>
+
+    </div>
+
+    </div>
 
     </body>
 </html>
