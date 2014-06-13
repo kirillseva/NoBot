@@ -29,8 +29,11 @@ object CalendarC extends Controller {
 
 //    val C_out = Calendar.stubCalendar
 
+      val timeMin = "2014-06-10T00%3A00%3A00-04%3A00"
+      val timeMax = "2014-06-10T23%3A59%3A59-04%3A00"
+
     /* Date hardcoded as Friday 6/6/14  */
-    val URL = "https://www.googleapis.com/calendar/v3/calendars/asmgtes27669vbdibsiqd6kacs%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&timeMax=2014-06-06T23%3A59%3A59-04%3A00&timeMin=2014-06-06T00%3A00%3A00-04%3A00&fields=items(creator%2FdisplayName%2Cend%2Cstart%2Csummary)&key=AIzaSyDCxa7PIXSYbYv4ERy1yP_FtW9nu4aUp2A"
+    val URL = "https://www.googleapis.com/calendar/v3/calendars/asmgtes27669vbdibsiqd6kacs%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&timeMax=" + timeMax + "&timeMin=" + timeMin + "&fields=items(creator%2FdisplayName%2Cend%2Cstart%2Csummary)&key=AIzaSyDCxa7PIXSYbYv4ERy1yP_FtW9nu4aUp2A"
 
     /* Looping through indexes may be required depending on what information you
        are looking for*/
