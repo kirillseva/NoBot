@@ -9,5 +9,5 @@ GET     /                           controllers.Application.index
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Custom routes added
-GET    /weatherC                    controllers.WeatherC.showC
+GET    /weatherC                    controllers.WeatherC.OWMweather
 GET    /calendar                    controllers.CalendarC.show

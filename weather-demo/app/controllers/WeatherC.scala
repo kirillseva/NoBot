@@ -13,12 +13,22 @@ import play.api.libs.json._
 import play.api.libs.json.JsResult
 
 object WeatherC extends Controller {
-  def showC = Action.async { implicit request =>
-    val loc = "Pittsburgh"
+  val loc = "Pittsburgh" //cobot's location
+
+
+  def OWMweather = Action.async { implicit request =>
     val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=metric"
     WS.url(URL).get.map { response =>
-      Ok(response.json)
+      val res = response.json
+      Ok(Json.obj(
+            "temp" -> (res \\ "temp")(0).as[Int],
+            "humidity" -> (res \\ "humidity")(0).as[Int],
+            "location" -> loc,
+            "description" -> (res \\ "description")(0).as[String],
+            "code" -> ((res \\ "weather" )(0) \\ "id")(0).as[Int]
+          ))
     }
 
   }
+
 }

@@ -5,6 +5,4 @@ case class Weather (
 
 object Weather {
   var stubWeather = Weather("Paris", true, 18, 64, "Partly Cloudy", 30)
-
-
 }
