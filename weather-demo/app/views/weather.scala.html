@@ -1,9 +1,26 @@
-@(weather: Weather)(implicit lang: Lang)
+<label>Choose Measurement System</label>
+<div class="form-group">
+    <div class="radio">
+        <label>
+            <input type="radio" name="CorF" value="true" ng-model="celcius">
+            °C
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="CorF" value="false" ng-model="celcius">
+            °F
+        </label>
+    </div>
+</div>
 
-
-@main(Messages("application.name")) {
-  <dl class="weather">
-    <dt>@weather.city: @weather.description</dt>
-    <dd>@weather.temp degrees celcius, humidity: @weather.humidity%</dd>
-  </dl>
-}
+<dl ng-show="Weather.getCelc()">
+  <dt>Weather in {{weatherdata.list[0].name}}</dt>
+  <dd>{{weatherdata.list[0].main.temp | number : 2}}°C, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+  <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+</dl>
+<dl ng-hide="Weather.getCelc()">
+  <dt>Weather in {{weatherdata.list[0].name}}</dt>
+  <dd>{{weatherdata.list[0].main.temp*9/5 + 32 | number : 2}}°F, humidity: {{weatherdata.list[0].main.humidity}}%  </dd>
+  <dd>Pressure: {{weatherdata.list[0].main.pressure}}</dd>
+</dl>

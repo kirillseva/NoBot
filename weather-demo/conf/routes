@@ -10,3 +10,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Custom routes added
 GET    /weatherC                    controllers.WeatherC.showC
+GET    /calendar                    controllers.CalendarC.show
