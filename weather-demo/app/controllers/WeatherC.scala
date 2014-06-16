@@ -17,18 +17,33 @@ object WeatherC extends Controller {
 
 
   def OWMweather = Action.async { implicit request =>
-    val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=metric"
+    val owmAPPID = "9b3e66306d1a439196275aaa44f66b81"
+    val URL = "http://api.openweathermap.org/data/2.5/find?q=" + loc + "&units=metric" + "&APPID=" + owmAPPID
     WS.url(URL).get.map { response =>
       val res = response.json
       Ok(Json.obj(
-            "temp" -> (res \\ "temp")(0).as[Int],
+            "temp" -> (res \\ "temp")(0).as[Float],
             "humidity" -> (res \\ "humidity")(0).as[Int],
             "location" -> loc,
             "description" -> (res \\ "description")(0).as[String],
             "code" -> ((res \\ "weather" )(0) \\ "id")(0).as[Int]
           ))
     }
+  }
 
+
+    def TheWeatherChannel = Action.async { implicit request =>
+      val URL = "http://api.wunderground.com/api/002d3c7fc5a4fb0c/conditions/q/"+ loc + ".json"
+      WS.url(URL).get.map { response =>
+        val res = response.json
+        Ok(Json.obj(
+              "temp" -> (res \\ "temp_c")(0).as[Float],
+              "humidity" -> (res \\ "relative_humidity")(0).as[String].substring(0,2).toInt,
+              "location" -> loc,
+              "description" -> (res \\ "weather")(0).as[String],
+              "code" -> -1
+            ))
+      }
   }
 
 }
