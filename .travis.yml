@@ -4,7 +4,7 @@ env:
 scala:
   - 2.10.3
 before_script:
-  -cd People_demo
+  - cd People_demo/
   - wget http://downloads.typesafe.com/play/2.2.3/play-${PLAY_VERSION}.zip
   - unzip -q play-${PLAY_VERSION}.zip
 script: 
