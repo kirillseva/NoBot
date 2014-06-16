@@ -26,8 +26,8 @@ import play.api.libs.json.JsResult
 object CalendarC extends Controller {
   def show = Action.async { implicit request =>
 
-    val timeMin = "2014-06-13T00%3A00%3A00-04%3A00"
-    val timeMax = "2014-06-13T23%3A59%3A59-04%3A00"
+    val timeMin = "2014-06-16T00%3A00%3A00-04%3A00"
+    val timeMax = "2014-06-16T23%3A59%3A59-04%3A00"
     val URL = "https://www.googleapis.com/calendar/v3/calendars/asmgtes27669vbdibsiqd6kacs%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&timeMax=" + timeMax + "&timeMin=" + timeMin + "&fields=items(creator%2FdisplayName%2Cend%2Cstart%2Csummary)&key=AIzaSyDCxa7PIXSYbYv4ERy1yP_FtW9nu4aUp2A"
 
     WS.url(URL).get.map { response =>
