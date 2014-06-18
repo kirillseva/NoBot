@@ -1,0 +1,6 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\conf\application.conf,C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\target\scala-2.10\classes\application.conf)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\conf\evolutions,C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\target\scala-2.10\classes\evolutions)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\conf\routes,C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\target\scala-2.10\classes\routes)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\conf\evolutions\default,C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\target\scala-2.10\classes\evolutions\default)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\conf\evolutions\default\1.sql,C:\Users\trofi_000\Downloads\play-2.2.3\play-2.2.3\People_2\target\scala-2.10\classes\evolutions\default\1.sql)[0m
