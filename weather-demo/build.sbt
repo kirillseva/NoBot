@@ -1,3 +1,5 @@
+import play.Project._
+
 name := "weather-demo"
 
 version := "1.0-SNAPSHOT"

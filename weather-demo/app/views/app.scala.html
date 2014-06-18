@@ -16,7 +16,7 @@
         </style>
         <script>
         $(function() {
-          $( "#draggable" ).draggable({ containment: "#containment-wrapper", scroll: false});
+          $( "#draggable" ).draggable({ containment: "#containment-wrapper", scroll: false, grid: [ 20, 20 ]});
         });
         </script>
 
@@ -30,13 +30,13 @@
             </div>
           </div>
 
-    <div >
+
 
           <div id="draggable" class="ui-widget-content" ng-controller="WeatherController as Weather">
               @views.html.weather()
           </div>
 
-    </div>
+
     </div>
 
     </body>

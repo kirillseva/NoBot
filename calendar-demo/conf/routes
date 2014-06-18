@@ -9,4 +9,4 @@ GET     /                           controllers.Application.index
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # NoBot routes
-GET    /calendar/                  controllers.CalendarC.show
+GET    /calendar                  controllers.CalendarC.show
