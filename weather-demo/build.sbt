@@ -6,6 +6,8 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache
-)     
+)
+
+resolvers += Classpaths.sbtPluginReleases
 
 play.Project.playScalaSettings
