@@ -7,6 +7,10 @@ before_script:
 #  - unzip -q play-${PLAY_VERSION}.zip
 script:
   - sbt coveralls
+deploy:
+  provider: heroku
+  api_key: d2d9a7ed-07bd-4e3c-933a-5dccd5299448
+  app: cobot-nobotics
 notifications:
   # Email notifications are disabled to not annoy anybody.
   # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more

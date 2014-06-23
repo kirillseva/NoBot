@@ -26,7 +26,7 @@ instrumentSettings
 
 CoverallsPlugin.coverallsSettings
 
-ScoverageKeys.minimumCoverage := 70
+ScoverageKeys.minimumCoverage := 7
 
 ScoverageKeys.failOnMinimumCoverage := false
 
