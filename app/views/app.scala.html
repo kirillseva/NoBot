@@ -1,0 +1,72 @@
+@(title: String)(implicit lang: Lang)
+<!DOCTYPE html>
+<html ng-app="Cobot">
+    <head>
+        <title>Cobot Nobot</title>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/ui-lightness/jquery-ui-1.10.4.custom.min.css")" />
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/app/weather.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui-1.10.4.custom.min.js")"></script>
+
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/fullcalendar.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/fullcalendar.print.css")" />
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/moment.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/fullcalendar.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/fullcalendar.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui.custom.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/gcal.js")"></script>
+
+        <style>
+        #draggable { width: 200px; height: 140px; padding: 0.5em; }
+        #draggableMSECalendar { width: 700px; height: 500px; padding: 1.5em; }
+        #draggableCoBotCalendar { width: 900px; height: 750px; padding: 1.5em; }
+        </style>
+        <script>
+        $(function() {
+          $( "#draggable" ).draggable({ containment: "#containment-wrapper", scroll: false});
+        });
+
+        $(function() {
+            $( "#draggableMSECalendar" ).draggable({ containment: "#containment-wrapper", scroll: false});
+          });
+        $(function() {
+          $( "#draggableCoBotCalendar" ).draggable({ containment: "#containment-wrapper", scroll: false});
+        });
+
+        </script>
+
+    </head>
+    <body id="containment-wrapper">
+        <div class = "weather">
+
+          <div class = "navbar navbar-fixed-top">
+            <div class = "navbar-inner">
+              @*  <h1 class="text-left">Cobot Nobot</h1> *@
+                <h1 class="text-right"><a href="logout">Logout</a></h1>
+            </div>
+          </div>
+
+
+
+          <div id="draggable" class="ui-widget-content" ng-controller="WeatherController as Weather">
+              @views.html.weather()
+          </div>
+
+          <div id="draggableMSECalendar" class="ui-widget-content">
+            @views.html.googleCalendar()
+          </div>
+
+
+          <div id="draggableCoBotCalendar" class="ui-widget-content">
+              @views.html.cobotCalendar()
+          </div>
+
+
+
+    </div>
+
+    </body>
+</html>
