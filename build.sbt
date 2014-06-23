@@ -24,6 +24,8 @@ libraryDependencies ++= Seq(
 
 instrumentSettings
 
+CoverallsPlugin.coverallsSettings
+
 ScoverageKeys.minimumCoverage := 70
 
 ScoverageKeys.failOnMinimumCoverage := false

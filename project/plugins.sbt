@@ -18,3 +18,5 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.0.0")
 
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "0.99.5")
+
+addSbtPlugin("com.sksamuel.scoverage" %% "sbt-coveralls" % "0.0.5")
