@@ -5,6 +5,7 @@ scala:
   - 2.10.3
 before_script:
 #  - unzip -q play-${PLAY_VERSION}.zip
+  - chmod +x activator
 script: 
   - ./activator test
 notifications:
