@@ -1,4 +1,4 @@
-name := """cobot-nobotics"""
+name := """cobot"""
 
 version := "1.0-SNAPSHOT"
 
