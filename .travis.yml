@@ -6,7 +6,7 @@ scala:
 before_script:
 #  - unzip -q play-${PLAY_VERSION}.zip
 script:
-  - sbt clean scoverage:test
+  - sbt coveralls
 notifications:
   # Email notifications are disabled to not annoy anybody.
   # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more
