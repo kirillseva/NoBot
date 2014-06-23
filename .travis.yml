@@ -5,8 +5,8 @@ scala:
   - 2.10.3
 before_script:
 #  - unzip -q play-${PLAY_VERSION}.zip
-script: 
-  - ./activator test
+script:
+  - sbt clean scoverage:test
 notifications:
   # Email notifications are disabled to not annoy anybody.
   # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more
