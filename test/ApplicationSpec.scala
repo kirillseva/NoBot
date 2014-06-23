@@ -20,5 +20,20 @@ class ApplicationSpec extends Specification {
     "send 404 on a bad request" in new WithApplication{
       route(FakeRequest(GET, "/boum")) must beNone
     }
+
+    "go to login page without credentials" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        val result  = route( FakeRequest( GET, "/")).get
+        status(result) must equalTo(303)
+      }
+    }
+
+    "show dashboard page if login with credentials" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        val result  = route( FakeRequest( GET, "/").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+      }
+    }
+
   }
 }
