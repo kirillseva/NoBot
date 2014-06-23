@@ -8,11 +8,22 @@ libraryDependencies ++= Seq(
   cache,
   jdbc,
   anorm,
-  "mysql" % "mysql-connector-java" % "5.1.31"
+  "mysql" % "mysql-connector-java" % "5.1.31",
+  "com.typesafe.scala-logging" %% "scala-logging-slf4j"    % "2.1.2",
+  "org.scalatest"              %% "scalatest"              % "2.1.6"            % "test"
 )     
 
-play.Project.playJavaSettings
+instrumentSettings
 
-ScoverageSbtPlugin.instrumentSettings
+ScoverageKeys.minimumCoverage := 80
 
-CoverallsPlugin.coverallsSettings
+ScoverageKeys.failOnMinimumCoverage := false
+
+ScoverageKeys.highlighting := {
+  if (scalaBinaryVersion.value == "2.10") false
+  else false
+}
+
+publishArtifact in Test := false
+
+parallelExecution in Test := false
