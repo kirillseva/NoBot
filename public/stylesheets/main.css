@@ -25,6 +25,10 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+body > .form-group {
+  width:30%;
+}
+
 body {
   padding-top: 60px;
 }

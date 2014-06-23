@@ -1,9 +1,9 @@
-@(title: String)
+@(title: String)(implicit name: String)
 <!DOCTYPE html>
 
 <html ng-app="Cobot">
     <head>
-        <title>Cobot Nobotics</title>
+        <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
 
         <!-- Latest compiled and minified CSS -->
@@ -29,7 +29,7 @@
     <body>
 
     	<!-- Fixed navbar -->
-	    @navbar()  
+	    @navbar(name)
 
 
 

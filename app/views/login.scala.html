@@ -9,40 +9,47 @@
     </head>
     <body>
 
-        @navbar()
+        @navbarLogin()
 
-        @helper.form(routes.Application.authenticate) {
+        <div class="text-center">
 
-            <h1>Sign in</h1>
+            @helper.form(routes.Application.authenticate) {
 
-            @form.globalError.map { error =>
-                <p class="error">
-                    @error.message
-                </p>
+                <h1>Sign in</h1>
+
+                @form.globalError.map { error =>
+                    <p class="error">
+                        @error.message
+                    </p>
+                }
+
+                @flash.get("success").map { message =>
+                    <p class="success">
+                        @message
+                    </p>
+                }
+
+                <div class="form-group">
+                    <p>
+                        <input type="email" name="email" placeholder="Email" id="email" value="@form("email").value">
+                    </p>
+                    <p>
+                        <input type="password" name="password" id="password" placeholder="Password">
+                    </p>
+                    <p>
+                        <button class="btn btn-success" type="submit" id="loginbutton">Login</button>
+                    </p>
+                </div>
+
             }
 
-            @flash.get("success").map { message =>
-                <p class="success">
-                    @message
-                </p>
-            }
-
-            <p>
-                <input type="email" name="email" placeholder="Email" id="email" value="@form("email").value">
-            </p>
-            <p>
-                <input type="password" name="password" id="password" placeholder="Password">
-            </p>
-            <p>
-                <button type="submit" id="loginbutton">Login</button>
+            <p class="note">
+                Try <em>CEO@@cobot.com</em> with <em>supersecret</em> as password.
             </p>
 
-        }
 
-        <p class="note">
-            Try <em>CEO@@cobot.com</em> with <em>supersecret</em> as password.
-        </p>
 
+        </div>
 
 
             <!-- Bootstrap core JavaScript
