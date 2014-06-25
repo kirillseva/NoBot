@@ -11,6 +11,8 @@
 
         @navbarLogin()
 
+      <div class="row">
+        <div class="col-md-2 col-md-offset-5">
         <div class="text-center">
 
             @helper.form(routes.Application.authenticate) {
@@ -31,10 +33,10 @@
 
                 <div class="form-group">
                     <p>
-                        <input type="email" name="email" placeholder="Email" id="email" value="@form("email").value" required autofocus>
+                        <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="@form("email").value" required autofocus>
                     </p>
                     <p>
-                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
                     </p>
                     <p>
                         <button class="btn btn-success" type="submit" id="loginbutton">Login</button>
@@ -48,9 +50,9 @@
             </p>
 
 
-
         </div>
-
+        </div>
+      </div>
 
             <!-- Bootstrap core JavaScript
           ================================================== -->
