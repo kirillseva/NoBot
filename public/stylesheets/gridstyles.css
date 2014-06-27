@@ -8,10 +8,6 @@ ul, ol {
     list-style: none;
 }
 
-li {
-  border: 1px solid #2c3e50;
-}
-
 h1 {
   margin-bottom: 12px;
   text-align: center;
@@ -22,7 +18,7 @@ h1 {
 /* Gridster styles */
 
 .gridster {
-    width: 100%;
+    width: 940px;
     margin: 0 auto;
 
     -webkit-transition: opacity .6s;
