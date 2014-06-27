@@ -19,7 +19,8 @@ libraryDependencies ++= Seq(
   "org.webjars" 			% 	"html5shiv" 				% "3.7.0",
   "org.webjars" 			% 	"respond" 					% "1.4.2",
   "org.webjars"       % "angularjs"           % "1.2.18",
-  "org.scalatest"     %% "scalatest"          % "2.1.6"            % "test"
+  "org.scalatest"     %% "scalatest"          % "2.1.6"            % "test",
+  "org.webjars"       % "gridster.js"         % "0.5.1"
 )
 
 instrumentSettings

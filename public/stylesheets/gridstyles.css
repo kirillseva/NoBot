@@ -1,0 +1,47 @@
+body {
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+ul, ol {
+    list-style: none;
+}
+
+li {
+  border: 1px solid #2c3e50;
+}
+
+h1 {
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+/* Gridster styles */
+
+.gridster {
+    width: 100%;
+    margin: 0 auto;
+
+    -webkit-transition: opacity .6s;
+    -moz-transition: opacity .6s;
+    -o-transition: opacity .6s;
+    -ms-transition: opacity .6s;
+    transition: opacity .6s;
+}
+
+.gridster .gs_w {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 5px rgba(0,1,1,0.9);
+    box-shadow: 10px 10px 5px rgba(1,0,1,0.9);
+}
+
+.gridster .preview-holder {
+    z-index: 1;
+    position: absolute;
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+    opacity: 0.9;
+}
