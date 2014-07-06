@@ -14,7 +14,7 @@ object Application extends Controller with Secured{
 
   def index = IsAuthenticated { username => _ =>
     User.findByEmail(username).map { user =>
-      Ok(views.html.main("Cobot Nobotics")(user.name)
+      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.findAll)
       )
     }.getOrElse(Forbidden)
   }
@@ -56,7 +56,18 @@ object Application extends Controller with Secured{
     )
   }
 
+  /**
+   * Provide implicit context to the views
+   */
+  def ActionWithContext(f: Context => Result) = {
+    Action { request =>
+      f(Context(Widget.findAll, request))
+    }
+  }
+
 }
+
+
 
 
 /**

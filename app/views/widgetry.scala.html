@@ -1,6 +1,6 @@
-@(widgets: List[Widget])
+@()(implicit widgets: Seq[Widget])
 
-<div class="gridster">
+<!-- <div class="gridster">
   <ul>
     <li id="hello" style="border: 1px solid #2c3e50;" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><h1>HELLO</h1></li>
     <li id="world" style="border: 1px solid #2c3e50;" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><h1>WORLD</h1></li>
@@ -9,5 +9,23 @@
         @views.html.weather()
     </li>
     <li id="empty" style="border: 1px solid #2c3e50;" data-row="1" data-col="4" data-sizex="1" data-sizey="2"></li>
+  </ul>
+</div> -->
+
+<div class="gridster">
+  <ul>
+    @for(widget<-widgets){
+      <li id=@widget.id style="border: 1px solid #2c3e50;" data-row=@widget.row data-col=@widget.col data-sizex=@widget.xdim data-sizey=@widget.ydim>
+        @widget.id match {
+          case "weather" => {
+            @views.html.weather()
+          }
+          case _ => {
+            <h1>@widget.id</h1>
+          }
+
+        }
+      </li>
+    }
   </ul>
 </div>

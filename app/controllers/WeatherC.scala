@@ -12,6 +12,8 @@ import scala.concurrent.Future
 import ExecutionContext.Implicits.global
 import play.api.libs.json._
 import play.api.libs.json.JsResult
+import play.api.data._
+import play.api.data.Forms._
 
 object WeatherC extends Controller {
   val loc = "Pittsburgh" //cobot's location
@@ -46,5 +48,11 @@ object WeatherC extends Controller {
             ))
       }
   }
+
+  /*case class toggleF_C()*/
+
+  /*val testForm: Form[Test] = Form (
+    "grade"-> number
+    )(Test.apply)(Test.unapply)*/
 
 }

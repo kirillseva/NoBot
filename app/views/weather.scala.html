@@ -1,17 +1,13 @@
-<label>Choose Measurement System</label>
+<label>Toggle degrees</label>
 <div class="form-group">
-    <div class="radio">
-        <label>
-            <input type="radio" name="CorF" value="true" ng-model="celcius">
-            °C
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" name="CorF" value="false" ng-model="celcius">
-            °F
-        </label>
-    </div>
+    <label>
+        <input type="radio" name="CorF" value="true">
+        °C
+    </label>
+    <label>
+        <input type="radio" name="CorF" value="false">
+        °F
+    </label>
 </div>
 
 <dl ng-show="Weather.getCelc()">

@@ -18,4 +18,4 @@ GET     /logout                     controllers.Application.logout
 
 # Custom routes added
 GET    /weatherC                    controllers.WeatherC.OWMweather
-# GET    /calendar                    controllers.CalendarC.show
+#GET    /wtest                       controllers.WeatherC.OWM
