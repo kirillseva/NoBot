@@ -10,5 +10,5 @@ Cobot Framework
 -----------------------------------------------------------------------
 * [Play Framework 2.3.0](http://www.playframework.com/)
 * [Bootstrap 3.1.1](http://getbootstrap.com/css/)
-* [Bootswatch-United](http://bootswatch.com/united/)
+* [Bootswatch-Flatly](http://bootswatch.com/flatly/)
 * [WebJars](http://www.webjars.org/)
