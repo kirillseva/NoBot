@@ -1,7 +1,7 @@
 @(title: String, name: String)(implicit widgets: Seq[Widget])
 <!DOCTYPE html>
 
-<html ng-app="Cobot">
+<html>
     <head>
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
@@ -41,13 +41,11 @@
 	    <!-- Latest compiled and minified JavaScript -->
 		<script src="@routes.WebJarAssets.at(WebJarAssets.locate("bootswatch-flatly", "bootstrap.min.js"))"></script>
 
-    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("angularjs", "angular.min.js"))"></script>
-
     <script src="@routes.WebJarAssets.at(WebJarAssets.locate("gridster.js", "jquery.gridster.min.js"))"></script>
 
     <script type="text/javascript" src="@routes.Assets.at("javascripts/gridConfig.js")"></script>
 
-    <script type="text/javascript" src="@routes.Assets.at("javascripts/app/weather.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/app/Weather.js")"></script>
 
     </body>
 </html>

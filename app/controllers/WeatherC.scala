@@ -49,10 +49,5 @@ object WeatherC extends Controller {
       }
   }
 
-  /*case class toggleF_C()*/
-
-  /*val testForm: Form[Test] = Form (
-    "grade"-> number
-    )(Test.apply)(Test.unapply)*/
 
 }

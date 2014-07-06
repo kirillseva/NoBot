@@ -1,20 +1,36 @@
-  var app = angular.module('Cobot', []);
+var loc = "Яуза";
+var tmp = -273;
+var desc = "Это насилие!";
+var celcius = true;
 
-  app.controller('WeatherController', function($scope, $http){
+function update(){
+  document.getElementById('weather_location').innerHTML = loc;
+  if (celcius){
+    document.getElementById('weather_temperature').innerHTML = tmp.toFixed(2) + "°C";
+  } else {
+    document.getElementById('weather_temperature').innerHTML = (tmp*9/5 + 32).toFixed(2) + "°F";
+  }
+  document.getElementById('weather_description').innerHTML = desc;
+}
 
-    $scope.celcius="true";
-    $scope.formData = {};
+$(document).ready(function(e) {
+update();
 
-    this.getCelc = function(){
-      return $scope.celcius;
-    };
+$.getJSON( "/weatherC", function( json ) {
+  tmp = json.temp;
+  loc = json.location;
+  desc = json.description;
+  update();
+})
 
-    this.setCelc = function(newValue){
-      this.celcius = newValue;
-    };
-
-    $http.get('http://localhost:9000/weatherC')
-       .then(function(res){
-          $scope.weatherdata = res.data;
-    });
 });
+
+function celc(){
+  celcius = true;
+  update();
+}
+
+function farh(){
+  celcius = false;
+  update();
+}

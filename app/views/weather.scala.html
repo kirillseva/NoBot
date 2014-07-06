@@ -1,22 +1,17 @@
 <label>Toggle degrees</label>
 <div class="form-group">
     <label>
-        <input type="radio" name="CorF" value="true">
+        <input type="radio" name="C" onclick="celc()" checked>
         °C
     </label>
     <label>
-        <input type="radio" name="CorF" value="false">
+        <input type="radio" name="C" onclick="farh()">
         °F
     </label>
 </div>
 
-<dl ng-show="Weather.getCelc()">
-  <dt>Weather in {{weatherdata.location}}</dt>
-    <dd> {{weatherdata.description}} </dd>
-  <dd>{{weatherdata.temp | number : 2}}°C, humidity: {{weatherdata.humidity}}%  </dd>
-</dl>
-<dl ng-hide="Weather.getCelc()">
-  <dt>Weather in {{weatherdata.location}}</dt>
-    <dd> {{weatherdata.description}} </dd>
-  <dd>{{weatherdata.temp*9/5 + 32 | number : 2}}°F, humidity: {{weatherdata.humidity}}%  </dd>
+<dl>
+  <dt id="weather_location">Current weather</dt>
+    <dd id="weather_description"> description </dd>
+    <dd id="weather_temperature">degrees °C</dd>
 </dl>

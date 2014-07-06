@@ -56,15 +56,6 @@ object Application extends Controller with Secured{
     )
   }
 
-  /**
-   * Provide implicit context to the views
-   */
-  def ActionWithContext(f: Context => Result) = {
-    Action { request =>
-      f(Context(Widget.findAll, request))
-    }
-  }
-
 }
 
 
