@@ -63,11 +63,6 @@ object Widget{
   /**
   * Return the list of saved widgets. If none found, use default
   */
-
-  def print(w: Widget) = {
-    println(w.id + "; " + w.row + "; " +w.col + "; " +w.size_x + "; " +w.size_y + ";")
-  }
-
   def saved(task: String, email: String): Seq[Widget] = {
     var wjts = getLayout(task, email)
     if (wjts.isEmpty) wjts = Widget.default
@@ -107,13 +102,11 @@ object Widget{
         "email" -> email
       ).as(LastID.simple.singleOpt)
     }
-    println(layoutID.get.id)
     //parse json into array of widgets
     val content = js.validate(readUserFromInput).get //returns a List[Widget]
     //iterate over each widget
     for (widget<-content){
       //write the widget to DB
-      print(widget)
       DB.withConnection { implicit connection =>
         SQL(
           """
@@ -136,8 +129,6 @@ object Widget{
           """
         ).as(LastID.simple.singleOpt)
       }
-      println("widgetID")
-      println(widgetID.get.id)
       //write to widget_layout table to sync widgets and layouts
       DB.withConnection { implicit connection =>
         SQL(
