@@ -8,15 +8,40 @@ create table user (
   password                  varchar(255) not null
 );
 
-create table grids (
-  id                        int(255) not null primary key,
-  task                      varchar(255),
+create table widget (
+  prim_id                   int not null auto_increment,
+  id                        varchar(255) not null,
+  row                       int not null,
+  col                       int not null,
+  xdim                      int not null,
+  ydim                      int not null,
+  xmax                      int,
+  ymax                      int,
+  xmin                      int,
+  ymin                      int,
+  primary key (prim_id)
+);
+
+create table layout (
+  id                        int not null auto_increment,
+  task                      varchar(255) not null,
   email                     varchar(255) not null,
-  layout                    varchar(255) not null
+  primary key (id)
+);
+
+create table widget_layout (
+  id                        int not null auto_increment,
+  widget_id                 int not null,
+  layout_id                 int not null,
+  primary key (id),
+  foreign key (widget_id) references widget(prim_id),
+  foreign key (layout_id) references layout(id)
 );
 
 
 # --- !Downs
 
-drop table if exists grids;
-drop table if exists user;
+-- drop table if exists widget;
+-- drop table if exists layout;
+-- drop table if exists widget_layout;
+-- drop table if exists user;
