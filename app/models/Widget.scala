@@ -82,11 +82,12 @@ object Widget{
   def saveLayout(email: String, js: JsValue) = {
     val task = (js \\ "task")(0).as[String]
     val layout = (js \\ "widgets")(0)
-    //first, add layout to DB (it's easy)
+    //first, add layout to DB
+    //add the new layout
     DB.withConnection { implicit connection =>
       SQL(
         """
-        insert into layout (task, email)
+        replace into layout (task, email)
         values ({task}, {email})
         """
       ).on(
@@ -98,8 +99,12 @@ object Widget{
     val layoutID = DB.withConnection { implicit connection =>
       SQL(
         """
-        SELECT max(id) as ID from layout
+        SELECT max(id) as ID from layout where
+        task={task} and email={email}
         """
+      ).on(
+        "task" -> task,
+        "email" -> email
       ).as(LastID.simple.singleOpt)
     }
     println(layoutID.get.id)
@@ -112,7 +117,7 @@ object Widget{
       DB.withConnection { implicit connection =>
         SQL(
           """
-          replace into widget (id, col, row, size_x, size_y)
+          insert into widget (id, col, row, size_x, size_y)
           values ({id}, {col}, {row}, {size_x}, {size_y})
           """
         ).on(

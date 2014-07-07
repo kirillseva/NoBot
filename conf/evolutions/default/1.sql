@@ -12,7 +12,8 @@ create table layout (
   id                        int not null auto_increment,
   task                      varchar(255) not null,
   email                     varchar(255) not null,
-  primary key (id)
+  primary key (id),
+  unique key taskemail (task, email)
 );
 
 create table widget (
@@ -30,8 +31,12 @@ create table widget_layout (
   widget_id                 int not null,
   layout_id                 int not null,
   primary key (id),
-  foreign key (widget_id) references widget(prim_id),
+  foreign key (widget_id) references widget(prim_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   foreign key (layout_id) references layout(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 
