@@ -11,11 +11,11 @@ import play.api.libs.functional.syntax._
 
 case class Widget(id: String, col: Int, row: Int, size_x: Int, size_y: Int)
 
-case class LastID(id: Int)
+case class LastID(id: Long)
 
 object LastID{
   val simple = {
-    get[Int]("LAST_INSERT_ID()") map {
+    get[Long]("ID") map {
       case id => LastID(id)
     }
   }
@@ -36,10 +36,10 @@ object Widget{
 
   val simple = {
     get[String]("widget.id") ~
-    get[Int]("user.col") ~
-    get[Int]("user.row") ~
-    get[Int]("user.size_x") ~
-    get[Int]("user.size_y") map {
+    get[Int]("widget.col") ~
+    get[Int]("widget.row") ~
+    get[Int]("widget.size_x") ~
+    get[Int]("widget.size_y") map {
       case id~col~row~size_x~size_y => Widget(id,col,row,size_x,size_y)
     }
   }
@@ -63,6 +63,10 @@ object Widget{
   /**
   * Return the list of saved widgets. If none found, use default
   */
+
+  def print(w: Widget) = {
+    println(w.id + "; " + w.row + "; " +w.col + "; " +w.size_x + "; " +w.size_y + ";")
+  }
 
   def saved(task: String, email: String): Seq[Widget] = {
     var wjts = getLayout(task, email)
@@ -94,22 +98,25 @@ object Widget{
     val layoutID = DB.withConnection { implicit connection =>
       SQL(
         """
-        SELECT LAST_INSERT_ID()
+        SELECT max(id) as ID from layout
         """
       ).as(LastID.simple.singleOpt)
     }
+    println(layoutID.get.id)
     //parse json into array of widgets
     val content = js.validate(readUserFromInput).get //returns a List[Widget]
     //iterate over each widget
     for (widget<-content){
       //write the widget to DB
+      print(widget)
       DB.withConnection { implicit connection =>
         SQL(
           """
-          insert into widget (col, row, size_x, size_y)
-          values ({col}, {row}, {size_x}, {size_y})
+          replace into widget (id, col, row, size_x, size_y)
+          values ({id}, {col}, {row}, {size_x}, {size_y})
           """
         ).on(
+          "id" -> widget.id,
           "col" -> widget.col,
           "row" -> widget.row,
           "size_x" -> widget.size_x,
@@ -120,10 +127,12 @@ object Widget{
       var widgetID = DB.withConnection { implicit connection =>
         SQL(
           """
-          SELECT LAST_INSERT_ID()
+          SELECT max(prim_id) as ID from widget
           """
         ).as(LastID.simple.singleOpt)
       }
+      println("widgetID")
+      println(widgetID.get.id)
       //write to widget_layout table to sync widgets and layouts
       DB.withConnection { implicit connection =>
         SQL(

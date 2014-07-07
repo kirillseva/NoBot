@@ -8,6 +8,13 @@ create table user (
   password                  varchar(255) not null
 );
 
+create table layout (
+  id                        int not null auto_increment,
+  task                      varchar(255) not null,
+  email                     varchar(255) not null,
+  primary key (id)
+);
+
 create table widget (
   prim_id                   int not null auto_increment,
   id                        varchar(255) not null,
@@ -16,13 +23,6 @@ create table widget (
   size_x                    int not null,
   size_y                    int not null,
   primary key (prim_id)
-);
-
-create table layout (
-  id                        int not null auto_increment,
-  task                      varchar(255) not null,
-  email                     varchar(255) not null,
-  primary key (id)
 );
 
 create table widget_layout (

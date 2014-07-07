@@ -19,4 +19,4 @@ GET     /logout                     controllers.Application.logout
 # Custom routes added
 GET     /weatherC                   controllers.WeatherC.OWMweather
 
-#GET     /getLayout                  controllers.WidgetC.test(path ="/", email="CEO@cobot.com")
+POST    /saveLayout                 controllers.WidgetC.save
