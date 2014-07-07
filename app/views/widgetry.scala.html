@@ -3,7 +3,7 @@
 <div class="gridster">
   <ul>
     @for(widget<-widgets){
-      <li id=@widget.id style="border: 1px solid #2c3e50;" data-row=@widget.row data-col=@widget.col data-sizex=@widget.xdim data-sizey=@widget.ydim data-max-sizex=@widget.xmax data-max-sizey=@widget.ymax data-min-sizex=@widget.xmin data-min-sizey=@widget.ymin >
+      <li id=@widget.id style="border: 1px solid #2c3e50;" data-row=@widget.row data-col=@widget.col data-sizex=@widget.size_x data-sizey=@widget.size_y>
         @widget.id match {
           case "weather" => {
             @views.html.weather()

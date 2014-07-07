@@ -8,7 +8,5 @@ import models._
 import views._
 
 object WidgetC extends Controller {
-  def test(path: String, email: String) = Action { implicit request =>
-    Ok(Widget.getLayout(path, email))
-  }
+  
 }

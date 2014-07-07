@@ -11,14 +11,10 @@ create table user (
 create table widget (
   prim_id                   int not null auto_increment,
   id                        varchar(255) not null,
-  row                       int not null,
   col                       int not null,
-  xdim                      int not null,
-  ydim                      int not null,
-  xmax                      int,
-  ymax                      int,
-  xmin                      int,
-  ymin                      int,
+  row                       int not null,
+  size_x                    int not null,
+  size_y                    int not null,
   primary key (prim_id)
 );
 
@@ -41,7 +37,7 @@ create table widget_layout (
 
 # --- !Downs
 
--- drop table if exists widget;
--- drop table if exists layout;
--- drop table if exists widget_layout;
--- drop table if exists user;
+drop table if exists widget;
+drop table if exists layout;
+drop table if exists widget_layout;
+drop table if exists user;

@@ -14,7 +14,7 @@ object Application extends Controller with Secured{
 
   def index = IsAuthenticated { username => _ =>
     User.findByEmail(username).map { user =>
-      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.default)
+      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.saved("/", user.email))
       )
     }.getOrElse(Forbidden)
   }

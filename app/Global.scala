@@ -35,5 +35,3 @@ object InitialData {
   }
 
 }
-
-/*select widget.id, widget.x, widget.y from widget, layout, widget_layout where layout.id=widget_layout.layout_id AND widget.prim_id=widget_layout.widget_id AND layout.task="/";*/
