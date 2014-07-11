@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/cobot -Dhttp.port=${PORT} -Ddb.default.driver=com.mysql.jdbc.Driver -Ddb.default.url=$DATABASE_URL -DapplyEvolutions.default=true
+web: target/universal/stage/bin/cobot -Dhttp.port=${PORT} -Ddb.default.url=$DB_URL -Ddb.default.user=$DB_USER -Ddb.default.password=$DB_PASS
