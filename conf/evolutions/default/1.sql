@@ -47,9 +47,8 @@ create table location (
 
 
 # --- !Downs
-
+drop table if exists widget_layout;
 drop table if exists location;
 drop table if exists widget;
 drop table if exists layout;
-drop table if exists widget_layout;
 drop table if exists user;
