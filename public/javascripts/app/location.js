@@ -2,7 +2,7 @@ var x, y;
 
 updateLoc = function() {
   $.ajax({
-    type :  "GET",
+    type :  "POST",
     url  :  "/getLocation",
     success: function(data){
       x = data.x;
