@@ -1,5 +1,7 @@
 var w, h;
 var radius = 7;
+var speed = 1;
+first = true;
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
@@ -9,16 +11,41 @@ function getMousePos(canvas, evt) {
   };
 }
 
+updateLoc = function() {
+  // if (Math.abs(robot.x - robot.dest_x) > 200){
+  //   robot.x = robot.dest_x;
+  // }
+  // if (Math.abs(robot.y - robot.dest_y) > 200){
+  //   robot.y = robot.dest_y;
+  // }
+
+  if ((robot.x - robot.dest_x) > speed) {
+    robot.x -= speed;
+  }
+  if ((robot.x - robot.dest_x) < -speed) {
+    robot.x += speed;
+  }
+  if ((robot.y - robot.dest_y) > speed) {
+    robot.y -= speed;
+  }
+  if ((robot.y - robot.dest_y) < -speed) {
+    robot.y += speed;
+  }
+  draw();
+}
+
 getLoc = function() {
   $.ajax({
     type :  "POST",
     url  :  "/getLocation",
     success: function(data){
-      robot.x = data.x;
-      robot.y = data.y;
-      //document.getElementById('xloc').innerHTML = "x = " + x;
-      //document.getElementById('yloc').innerHTML = "y = " + y;
-      draw();
+      robot.dest_x = data.x;
+      robot.dest_y = data.y;
+      if (first) {
+        robot.x = data.x;
+        robot.y = data.y;
+        first = false;
+      }
     }
   });
 };
@@ -26,7 +53,6 @@ getLoc = function() {
 setLoc = function(new_loc) {
   var url = "/setLocation";
   send(url, new_loc);
-  console.log(new_loc);
 };
 
 set_canvas = function(x, y) {
@@ -48,15 +74,14 @@ set_canvas = function(x, y) {
 
   canvas.addEventListener("mousedown", function(evt)
   {
-      mousePos = getMousePos(canvas, evt);
-      robot.dest_x = robot.x + (mousePos.x - w/2);
-      robot.dest_y = robot.y + (mousePos.y - h/2);
-      var json = {
-        x: robot.dest_x,
-        y: robot.dest_y
-      };
-      console.log(json);
-      setLoc(json);
+    mousePos = getMousePos(canvas, evt);
+    var xxx = robot.x + (mousePos.x - w/2);
+    var yyy = robot.y + (mousePos.y - h/2);
+    var json = {
+      x: xxx,
+      y: yyy
+    };
+    setLoc(json);
   });
 }
 
@@ -87,7 +112,7 @@ function draw() {
 }
 
 $(document).ready(function(e) {
-  //draw();
   set_canvas(3, 2);
   setInterval(getLoc, 500);
+  setInterval(updateLoc, 10);
 });
