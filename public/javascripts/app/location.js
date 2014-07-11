@@ -15,6 +15,5 @@ updateLoc = function() {
 };
 
 $(document).ready(function(e) {
-  updateLoc();
-
+  setInterval(updateLoc, 500);
 });

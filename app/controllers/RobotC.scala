@@ -10,7 +10,6 @@ object RobotC extends Controller {
   def getLocation = Action { request =>
     val loc = Location.getLocation
     val json = Json.toJson(loc)
-    println(json)
     Ok(json)
   }
 }
