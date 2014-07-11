@@ -35,7 +35,8 @@ $(function() {
       min_size: [1, 1],
       stop: function (e, ui, $widget) {
         var newDimensions = this.serialize($widget)[0];
-        if (newDimensions.id="map") {
+        if (newDimensions.id=="map") {
+          console.log(newDimensions);
           set_canvas(newDimensions.size_x, newDimensions.size_y);
         }
       }
