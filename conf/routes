@@ -21,3 +21,5 @@ GET     /weatherC                   controllers.WeatherC.OWMweather
 
 POST    /saveLayout                 controllers.WidgetC.save
 POST    /getLocation                controllers.RobotC.getLocation
+
+GET     /:page                      controllers.Application.show(page)
