@@ -43,7 +43,7 @@ create table location (
   name                      varchar(255) not null primary key,
   x                         int not null,
   y                         int not null
-)
+);
 
 
 # --- !Downs

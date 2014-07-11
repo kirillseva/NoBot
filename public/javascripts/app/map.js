@@ -26,6 +26,7 @@ getLoc = function() {
 setLoc = function(new_loc) {
   var url = "/setLocation";
   send(url, new_loc);
+  console.log(new_loc);
 };
 
 set_canvas = function(x, y) {
