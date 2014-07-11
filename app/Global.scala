@@ -30,6 +30,7 @@ object InitialData {
         User("genia@cobot.com", "Evgenia Trofimova", "secret"),
         User("CEO@cobot.com", "Bradley Schmerl", "supersecret")
       ).foreach(User.create)
+      Location.setLocation(580, 1040)
 
     }
   }

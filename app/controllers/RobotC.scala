@@ -8,8 +8,15 @@ import models._
 
 object RobotC extends Controller {
   def getLocation = Action { request =>
-    val loc = Location.getFakeLocation
+    val loc = Location.getLocation
     val json = Json.toJson(loc)
+    Ok(json)
+  }
+
+  def setLocation = Action(parse.json) { request =>
+    val loc = request.body.validate[Location].get
+    Location.setLocation(loc.x, loc.y)
+    val json = Json.toJson(Map("success" -> 1))
     Ok(json)
   }
 }

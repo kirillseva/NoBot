@@ -39,9 +39,16 @@ create table widget_layout (
   ON UPDATE CASCADE
 );
 
+create table location (
+  name                      varchar(255) not null primary key,
+  x                         int not null,
+  y                         int not null
+)
+
 
 # --- !Downs
 
+drop table if exists location;
 drop table if exists widget;
 drop table if exists layout;
 drop table if exists widget_layout;
