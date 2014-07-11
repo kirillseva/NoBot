@@ -4,12 +4,18 @@ var ctx = document.getElementById("map-canvas").getContext("2d");
 
 
 set_canvas = function(x, y) {
-  console.log(x+y);
   var widget = document.getElementById("map");
-  w = x*140;
-  h = y*140;
+  if (x > 1) {
+    w = x*140;
+  } else {
+    w = 138;
+  }
+  if (y > 1) {
+    h = y*140;
+  } else {
+    h = 138;
+  }
   var string = '<canvas id="map-canvas" width="' + w + '" height="' + h + '"></canvas>';
-  console.log(string);
   $("#mapper").html(string);
   ctx = document.getElementById("map-canvas").getContext("2d");
 }
@@ -30,7 +36,6 @@ var robot = {
 
 var background = new Image();
 background.src = "assets/images/300SCRG.png";
-console.log(background);
 
 updateLoc = function() {
   $.ajax({
@@ -42,14 +47,13 @@ updateLoc = function() {
       //document.getElementById('xloc').innerHTML = "x = " + x;
       //document.getElementById('yloc').innerHTML = "y = " + y;
       draw();
-      console.log(data);
     }
   });
 };
 
 function draw() {
-    ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
-    robot.render();
+  ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
+  robot.render();
 }
 
 $(document).ready(function(e) {
