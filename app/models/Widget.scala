@@ -31,7 +31,7 @@ object Widget{
       Widget("hello", 1, 1, 1, 1),
       Widget("world", 1, 2, 2, 1),
       Widget("weather", 2, 1, 1, 1),
-      Widget("map", 5, 1, 1, 1)
+      Widget("map", 4, 1, 3, 2)
     )
   }
 

@@ -11,7 +11,7 @@ object Robot{
 
   // just a stub for now. Ideally update all of the robot's aspects here
   def updateInfo: Robot = {
-    val loc = Location.getLocation
+    val loc = Location.getFakeLocation
     Robot(loc)
   }
 }
@@ -19,8 +19,8 @@ object Robot{
 object Location{
 
   //just a stub for now. Ideally will get the latest robot's location
-  def getLocation: Location = {
-    Location(14, 88)
+  def getFakeLocation: Location = {
+    Location(540, 1000)
   }
 
   implicit val locationWrites = (
