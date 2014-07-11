@@ -20,7 +20,7 @@ object Location{
 
   //just a stub for now. Ideally will get the latest robot's location
   def getFakeLocation: Location = {
-    Location(540, 1000)
+    Location(580, 1040)
   }
 
   implicit val locationWrites = (
