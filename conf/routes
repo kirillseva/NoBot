@@ -20,3 +20,4 @@ GET     /logout                     controllers.Application.logout
 GET     /weatherC                   controllers.WeatherC.OWMweather
 
 POST    /saveLayout                 controllers.WidgetC.save
+GET     /getLocation                controllers.RobotC.getLocation

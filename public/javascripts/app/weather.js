@@ -3,7 +3,7 @@ var tmp = -273;
 var desc = "Это насилие!";
 var celcius = true;
 
-function update(){
+function updateWeather(){
   document.getElementById('weather_location').innerHTML = loc;
   if (celcius){
     document.getElementById('weather_temperature').innerHTML = tmp.toFixed(2) + "°C";
@@ -14,23 +14,21 @@ function update(){
 }
 
 $(document).ready(function(e) {
-update();
-
 $.getJSON( "/weatherC", function( json ) {
   tmp = json.temp;
   loc = json.location;
   desc = json.description;
-  update();
+  updateWeather();
 })
 
 });
 
 function celc(){
   celcius = true;
-  update();
+  updateWeather();
 }
 
 function farh(){
   celcius = false;
-  update();
+  updateWeather();
 }

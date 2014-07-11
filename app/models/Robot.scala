@@ -1,5 +1,8 @@
 package models
 
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
 case class Location(x: Int, y: Int)
 
 case class Robot(location: Location)
@@ -19,4 +22,9 @@ object Location{
   def getLocation: Location = {
     Location(14, 88)
   }
+
+  implicit val locationWrites = (
+  (__ \ "x").write[Int] ~
+  (__ \ "y").write[Int]
+  )(unlift(Location.unapply))
 }
