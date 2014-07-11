@@ -1,13 +1,25 @@
-var x, y;
+var x, y, w, h;
 var radius = 7;
 var ctx = document.getElementById("map-canvas").getContext("2d");
+
+
+set_canvas = function(x, y) {
+  console.log(x+y);
+  var widget = document.getElementById("map");
+  w = x*140;
+  h = y*140;
+  var string = '<canvas id="map-canvas" width="' + w + '" height="' + h + '"></canvas>';
+  console.log(string);
+  $("#mapper").html(string);
+  ctx = document.getElementById("map-canvas").getContext("2d");
+}
 
 var robot = {
   x: 0,
   y: 0,
   render: function() {
     ctx.beginPath();
-    ctx.arc(210, 140, radius, 0, 2 * Math.PI, false);
+    ctx.arc(w/2, h/2, radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = '#18bc9c';
     ctx.fill();
     ctx.lineWidth = 1;
@@ -36,11 +48,12 @@ updateLoc = function() {
 };
 
 function draw() {
-    ctx.drawImage(background, robot.x - 210, robot.y - 140, 420, 280, 0, 0, 420, 280);
+    ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
     robot.render();
 }
 
 $(document).ready(function(e) {
   //draw();
+  set_canvas(3, 2);
   setInterval(updateLoc, 500);
 });
