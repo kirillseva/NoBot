@@ -1,3 +1,0 @@
-Name,email,roomNumber
-Jane Miller,mil3@cs.cmu.edu,271
-Arpita Shrivastava,arpita@cmu.edu,261
