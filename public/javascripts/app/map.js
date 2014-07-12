@@ -12,13 +12,6 @@ function getMousePos(canvas, evt) {
 }
 
 updateLoc = function() {
-  // if (Math.abs(robot.x - robot.dest_x) > 200){
-  //   robot.x = robot.dest_x;
-  // }
-  // if (Math.abs(robot.y - robot.dest_y) > 200){
-  //   robot.y = robot.dest_y;
-  // }
-
   if ((robot.x - robot.dest_x) > speed) {
     robot.x -= speed;
   }
@@ -56,7 +49,6 @@ setLoc = function(new_loc) {
 };
 
 set_canvas = function(x, y) {
-  var widget = document.getElementById("map");
   if (x > 1) {
     w = x*140;
   } else {
@@ -112,7 +104,10 @@ function draw() {
 }
 
 $(document).ready(function(e) {
-  set_canvas(3, 2);
+  var startx, starty, map;
+  startx = document.getElementById("map").getAttribute("data-sizex");
+  starty = document.getElementById("map").getAttribute("data-sizey");
+  set_canvas(startx, starty);
   setInterval(getLoc, 500);
   setInterval(updateLoc, 10);
 });

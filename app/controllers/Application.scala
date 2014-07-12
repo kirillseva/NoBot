@@ -19,9 +19,9 @@ object Application extends Controller with Secured{
     }.getOrElse(Forbidden)
   }
 
-  def show(page: String) = IsAuthenticated { username => _ =>
+  def testpage = IsAuthenticated { username => _ =>
     User.findByEmail(username).map { user =>
-      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.saved(page, user.email))
+      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.saved("/test", user.email))
       )
     }.getOrElse(Forbidden)
   }

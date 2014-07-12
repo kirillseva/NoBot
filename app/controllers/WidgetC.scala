@@ -13,4 +13,13 @@ object WidgetC extends Controller {
     val json = Json.toJson(Map("saved" -> true))
     Ok(json)
   }
+
+  def restoreDefault = Action(parse.json) { request =>
+    /*println("default")*/
+    val task = (request.body \ "task").as[String]
+    /*println(routes.Application.index)*/
+    Widget.restoreDefault(request.session.get("email").get, task)
+    /*Ok(Json.toJson(Map("default" -> true)))*/
+    Redirect(task)
+  }
 }

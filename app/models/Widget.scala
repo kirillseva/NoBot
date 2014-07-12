@@ -61,6 +61,22 @@ object Widget{
     }
   }
 
+
+  def restoreDefault(email: String, task: String) = {
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+        delete from widget, layout, widget_layout using widget, layout, widget_layout where
+        layout.id=widget_layout.layout_id and widget.prim_id=widget_layout.widget_id and
+        layout.task={task} and layout.email={email}
+        """
+      ).on(
+        "task" -> task,
+        "email" -> email
+      ).executeUpdate()
+    }
+  }
+
   /**
   * Return the list of saved widgets. If none found, use default
   */

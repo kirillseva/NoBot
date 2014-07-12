@@ -26,12 +26,12 @@ send = function(url, obj) {
 
 $(function() {
   gridster = $(".gridster > ul").gridster({
-    widget_margins: [5, 5],
+    widget_margins: [3, 3],
     widget_base_dimensions: [140, 140],
     min_cols: 6,
     resize: {
       enabled: true,
-      max_size: [3, 2],
+      max_size: [4, 3],
       min_size: [1, 1],
       stop: function (e, ui, $widget) {
         var newDimensions = this.serialize($widget)[0];
@@ -55,13 +55,21 @@ $(function() {
 
 
   $('.js-serialize').on('click', function() {
-    var url = "/saveLayout"
+    var url = "/saveLayout";
     var s = {};
     s.task = $(location).attr('pathname');
     s.widgets = gridster.serialize();
-    send(url, s)
+    send(url, s);
 
     console.log(JSON.stringify(s));
-  })
+  });
+
+  $('.js-restore-default').on('click', function() {
+    var url = "/restoreDefault";
+    var s = {};
+    s.task = $(location).attr('pathname');
+    send(url, s);
+    window.location.reload();
+  });
 
 });
