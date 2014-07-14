@@ -25,4 +25,7 @@ POST    /setLocation                controllers.RobotC.setLocation
 
 GET     /test                       controllers.Application.testpage
 
-POST     /restoreDefault             controllers.WidgetC.restoreDefault
+POST     /restoreDefault            controllers.WidgetC.restoreDefault
+
+POST     /addWidget                 controllers.WidgetC.addWidget
+POST     /removeWidget              controllers.WidgetC.removeWidget

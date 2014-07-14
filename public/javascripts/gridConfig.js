@@ -79,4 +79,24 @@ $(function() {
     });
   });
 
+  $('.js-add-widget').on('click', function() {
+    var url = "/addWidget";
+    var s = {};
+    s.task = $(location).attr('pathname');
+    s.name = $(this).attr('name');
+    console.log(s);
+    send(url, s);
+    window.location.reload();
+  });
+
+  $('.js-remove-widget').on('click', function() {
+    var url = "/removeWidget";
+    var s = {};
+    s.task = $(location).attr('pathname');
+    s.name = $(this).attr('name');
+    console.log(s);
+    send(url, s);
+    window.location.reload();
+  });
+
 });

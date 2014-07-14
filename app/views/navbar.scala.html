@@ -18,16 +18,18 @@
           <li><a class="js-restore-default">Restore default</a></li>
           <li class="divider"></li>
           <li class="dropdown-header">Change layout</li>
+          @if(!addable.isEmpty){
+            <li class="dropdown-submenu">
+              <a>Add a widget</a>
+              <ul class="dropdown-menu">
+                @for(widget<-addable){
+                  <li><a name=@widget class="js-add-widget">@widget</a></li>
+                }
+              </ul>
+            </li>
+          }
           <li class="dropdown-submenu">
-            <a tabindex="-1">Add a widget</a>
-            <ul class="dropdown-menu">
-              @for(widget<-addable){
-                <li><a name=@widget class="js-add-widget">@widget</a></li>
-              }
-            </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a tabindex="-1">Remove a widget</a>
+            <a>Remove a widget</a>
             <ul class="dropdown-menu">
               @for(widget<-widgets){
                 <li><a name=@widget.id class="js-remove-widget">@widget.id</a></li>

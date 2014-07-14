@@ -15,11 +15,28 @@ object WidgetC extends Controller {
   }
 
   def restoreDefault = Action(parse.json) { request =>
-    /*println("default")*/
     val task = (request.body \ "task").as[String]
-    /*println(routes.Application.index)*/
     Widget.restoreDefault(request.session.get("email").get, task)
-    /*Ok(Json.toJson(Map("default" -> true)))*/
-    Redirect(task)
+    val json = Json.toJson(Map("restored" -> true))
+    Ok(json)
+  }
+
+  def addWidget = Action(parse.json) { request =>
+    println(request.body)
+    val name = (request.body \ "name").as[String]
+    val task = (request.body \ "task").as[String]
+    Widget.addWidget(name, task, request.session.get("email").get)
+
+    val json = Json.toJson(Map("added" -> name))
+    Ok(json)
+  }
+
+  def removeWidget = Action(parse.json) { request =>
+    val name = (request.body \ "name").as[String]
+    val task = (request.body \ "task").as[String]
+    Widget.removeWidget(name, task, request.session.get("email").get)
+
+    val json = Json.toJson(Map("removed" -> name))
+    Ok(json)
   }
 }

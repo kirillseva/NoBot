@@ -76,7 +76,56 @@ object Widget{
       ).as(Widget.simple *)
     }
   }
-
+  def addWidget(widget: String, task: String, email: String) = {
+    //get the latest id of layout
+    val layoutID = DB.withConnection { implicit connection =>
+      SQL(
+        """
+        SELECT max(id) as ID from layout where
+        task={task} and email={email}
+        """
+      ).on(
+        "task" -> task,
+        "email" -> email
+      ).as(LastID.simple.singleOpt)
+    }
+    //add the widget
+    //set 1 1 1 1 as coordinates and let gridster figure the new layout out (pun not intended)
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+        insert into widget (id, col, row, size_x, size_y)
+        values ({id}, {col}, {row}, {size_x}, {size_y})
+        """
+      ).on(
+        "id" -> widget,
+        "col" -> 1,
+        "row" -> 1,
+        "size_x" -> 1,
+        "size_y" -> 1
+      ).executeUpdate()
+    }
+    //get the latest ID
+    var widgetID = DB.withConnection { implicit connection =>
+      SQL(
+        """
+        SELECT max(prim_id) as ID from widget
+        """
+      ).as(LastID.simple.singleOpt)
+    }
+    //write to widget_layout table to sync widgets and layouts
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+        insert into widget_layout (widget_id, layout_id)
+        values ({widget_id}, {layout_id})
+        """
+      ).on(
+        "widget_id" -> widgetID.get.id,
+        "layout_id" -> layoutID.get.id
+      ).executeUpdate()
+    }
+  }
 
   def restoreDefault(email: String, task: String) = {
     DB.withConnection { implicit connection =>
@@ -89,6 +138,23 @@ object Widget{
       ).on(
         "task" -> task,
         "email" -> email
+      ).executeUpdate()
+    }
+  }
+
+  def removeWidget(widget: String, task: String, email: String) = {
+    println("removed" + widget)
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+        delete from widget, widget_layout using widget, layout, widget_layout where
+        layout.id=widget_layout.layout_id and widget.prim_id=widget_layout.widget_id and
+        layout.task={task} and layout.email={email} and widget.id={widget}
+        """
+      ).on(
+        "task" -> task,
+        "email" -> email,
+        "widget" -> widget
       ).executeUpdate()
     }
   }
