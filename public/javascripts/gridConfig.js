@@ -68,8 +68,15 @@ $(function() {
     var url = "/restoreDefault";
     var s = {};
     s.task = $(location).attr('pathname');
-    send(url, s);
-    window.location.reload();
+    // send(url, s);
+    $.ajax({
+      type: "POST",
+      url: url,
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+      data: JSON.stringify(s),
+      success: window.location.reload()
+    });
   });
 
 });
