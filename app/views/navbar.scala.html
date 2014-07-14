@@ -22,7 +22,7 @@
             <a tabindex="-1">Add a widget</a>
             <ul class="dropdown-menu">
               @for(widget<-addable){
-                <li><a id=@widget class="js-add-widget">@widget</a></li>
+                <li><a name=@widget class="js-add-widget">@widget</a></li>
               }
             </ul>
           </li>
@@ -30,7 +30,7 @@
             <a tabindex="-1">Remove a widget</a>
             <ul class="dropdown-menu">
               @for(widget<-widgets){
-                <li><a id=@widget.id class="js-remove-widget">@widget.id</a></li>
+                <li><a name=@widget.id class="js-remove-widget">@widget.id</a></li>
               }
             </ul>
           </li>
