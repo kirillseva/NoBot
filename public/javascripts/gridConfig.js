@@ -75,7 +75,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      success: window.location.reload()
+      complete: window.location.reload()
     });
   });
 
