@@ -14,14 +14,18 @@ object Application extends Controller with Secured{
 
   def index = IsAuthenticated { username => _ =>
     User.findByEmail(username).map { user =>
-      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.saved("/", user.email))
+      val widgets = Widget.saved("/", user.email)
+      val addable = Widget.addable(widgets, Widget.allWidgets)
+      Ok(views.html.main("Cobot Nobotics", user.name)(widgets, addable)
       )
     }.getOrElse(Forbidden)
   }
 
   def testpage = IsAuthenticated { username => _ =>
     User.findByEmail(username).map { user =>
-      Ok(views.html.main("Cobot Nobotics", user.name)(Widget.saved("/test", user.email))
+      val widgets = Widget.saved("/test", user.email)
+      val addable = Widget.addable(widgets, Widget.allWidgets)
+      Ok(views.html.main("Cobot Nobotics", user.name)(widgets, addable)
       )
     }.getOrElse(Forbidden)
   }

@@ -26,6 +26,22 @@ object Widget{
   implicit val widgetFormat:Format[Widget] = Json.format[Widget]
   val readUserFromInput = (__ \ "widgets").read[List[Widget]]
 
+  //list all existing widgets here
+  val allWidgets = Seq(
+    "weather",
+    "map",
+    "hello",
+    "world",
+    "test",
+    "scalaisgood"
+  )
+
+  def addable(online: Seq[Widget], all: Seq[String]): Seq[String] = {
+    val wjtseq = online.map(_.id)
+    all.filterNot(wjtseq.contains(_))
+  }
+
+  // default widget allocation
   def default = {
     Seq(
       Widget("hello", 1, 1, 1, 1),

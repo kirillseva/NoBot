@@ -1,4 +1,4 @@
-@(name: String)
+@(name: String)(implicit widgets: Seq[Widget], addable: Seq[String])
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -18,8 +18,22 @@
           <li><a class="js-restore-default">Restore default</a></li>
           <li class="divider"></li>
           <li class="dropdown-header">Change layout</li>
-          <li><a class="js-add-widget">Add a widget</a></li>
-          <li><a class="js-remove-widget">Remove a widget</a></li>
+          <li class="dropdown-submenu">
+            <a tabindex="-1">Add a widget</a>
+            <ul class="dropdown-menu">
+              @for(widget<-addable){
+                <li><a id=@widget class="js-add-widget">@widget</a></li>
+              }
+            </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a tabindex="-1">Remove a widget</a>
+            <ul class="dropdown-menu">
+              @for(widget<-widgets){
+                <li><a id=@widget.id class="js-remove-widget">@widget.id</a></li>
+              }
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
