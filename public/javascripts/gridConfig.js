@@ -24,6 +24,10 @@ send = function(url, obj) {
   });
 };
 
+refresh = function(){
+  location.reload(true);
+}
+
 $(function() {
   gridster = $(".gridster > ul").gridster({
     widget_margins: [3, 3],
@@ -75,7 +79,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      complete: window.location.reload()
+      success: setTimeout(refresh, 100)
     });
   });
 
@@ -86,7 +90,7 @@ $(function() {
     s.name = $(this).attr('name');
     console.log(s);
     send(url, s);
-    window.location.reload();
+    setTimeout(refresh, 100);
   });
 
   $('.js-remove-widget').on('click', function() {
@@ -96,7 +100,8 @@ $(function() {
     s.name = $(this).attr('name');
     console.log(s);
     send(url, s);
-    window.location.reload();
+    delay(500);
+    setTimeout(refresh, 100);
   });
 
 });
