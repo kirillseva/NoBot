@@ -18,7 +18,6 @@ GET     /logout                     controllers.Application.logout
 
 # Custom routes added
 GET     /weatherC                   controllers.WeatherC.OWMweather
-#GET     /calendarC                  controllers.CalendarC.GoogleCalendar263
+GET     /calendarC                  controllers.CalendarC.googleCalendar263
+
 POST    /saveLayout                 controllers.WidgetC.save
-GET     /calendarQuery              controllers.CalendarC.calendarEventQuery
-POST    /                           controllers.CalendarC.selectRoom

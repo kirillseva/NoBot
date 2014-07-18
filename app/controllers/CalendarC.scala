@@ -15,28 +15,11 @@ import play.api.data._
 import play.api.data.Forms._
 
 object CalendarC extends Controller {
-  val form = Form(
-    single(
-      "roomNo" -> text
-    )
-  )
 
-  def calendarEventQuery = Action {
-    Ok(views.html.calendarEventQuery())
-  }
+  def googleCalendar263 = Action.async { implicit request =>
 
-  def selectRoom = Action { implicit request =>
-    val (selectedRoomNo) = form.bindFromRequest.get
-    val jsonString = Json.toJson(selectedRoomNo)
-
-    Ok(jsonString)
-  }
-
-
-  def GoogleCalendar263 = Action.async { implicit request =>
-
-      val timeMin = "2014-07-11T00%3A00%3A00-04%3A00"
-      val timeMax = "2014-07-11T23%3A59%3A59-04%3A00"
+      val timeMin = "2014-07-18T00%3A00%3A00-04%3A00"
+      val timeMax = "2014-07-18T23%3A59%3A59-04%3A00"
       val URL = "https://www.googleapis.com/calendar/v3/calendars/asmgtes27669vbdibsiqd6kacs%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&timeMax=" + timeMax + "&timeMin=" + timeMin + "&fields=items(creator%2FdisplayName%2Cend%2Cstart%2Csummary)&key=AIzaSyDCxa7PIXSYbYv4ERy1yP_FtW9nu4aUp2A"
 
       WS.url(URL).get.map { response =>
