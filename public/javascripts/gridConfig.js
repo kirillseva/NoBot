@@ -1,5 +1,6 @@
 var gridster;
 var count = 0;
+var delay_time = 180;
 
 sanitize = function(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -79,7 +80,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      success: setTimeout(refresh, 100)
+      success: setTimeout(refresh, delay_time)
     });
   });
 
@@ -90,7 +91,7 @@ $(function() {
     s.name = $(this).attr('name');
     console.log(s);
     send(url, s);
-    setTimeout(refresh, 100);
+    setTimeout(refresh, delay_time);
   });
 
   $('.js-remove-widget').on('click', function() {
@@ -101,7 +102,7 @@ $(function() {
     console.log(s);
     send(url, s);
     delay(500);
-    setTimeout(refresh, 100);
+    setTimeout(refresh, delay_time);
   });
 
 });
