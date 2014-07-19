@@ -32,8 +32,8 @@ object Widget{
     "map",
     "hello",
     "world",
-    "test",
-    "scalaisgood"
+    "calendarEventQuery",
+    "calendarEventNameQuery"
   )
 
   def addable(online: Seq[Widget], all: Seq[String]): Seq[String] = {
@@ -48,6 +48,8 @@ object Widget{
       Widget("world", 1, 2, 2, 1),
       Widget("weather", 2, 1, 1, 1),
       Widget("map", 4, 1, 3, 2)
+      Widget("calendarEventQuery", 1, 3, 2, 1),
+      Widget("calendarEventNameQuery", 1, 4, 2, 1)
     )
   }
 
