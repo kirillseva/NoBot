@@ -1,26 +1,21 @@
 
-<div>
-<!--    <form method="post/" action="/selectRoom" autocomplete="on"> -->
-          <label>Select a room to see who is in it:</label>
-          <br>
+  <label>Select a room to see who is in it:</label>
+  <br>
 
-           <select name="roomNo">
-              <option value="SCR 261">SCR 261</option>
-              <option value="SCR 262">SCR 262</option>
-              <option value="SCR 263">SCR 263</option>
-              <option value="SCR 265">SCR 265</option>
-              <option value="SCR 281">SCR 281</option>
-              <option value="SCR 282">SCR 282</option>
-            </select>
+   <select id="roomNo">
+      <option value="       ">       </option>
+      <option value="SCR_261">SCR 261</option>
+      <option value="SCR_262">SCR 262</option>
+      <option value="SCR_263">SCR 263</option>
+      <option value="SCR_281">SCR 281</option>
+      <option value="SCR_282">SCR 282</option>
+      <option value="Coach_Library">Coach Library</option>
+    </select>
 
-          <input type="submit" value="Search">
-<!--    </form> -->
+  <button type="button" onclick="selectRoom()">Search</button>
 
-    <h1>---------------------------</h1>
-</div>
+  <label>________________________________________________</label>
 
-    <dl>
-      <dd id="event_creator">Creator</dd>
-      <dd id="event_name"> Event Name </dd>
-      <dd id="event_time">Start/End Time</dd>
-    </dl>
+  <div>
+    <p id="event_creator"></p>
+  </div>
