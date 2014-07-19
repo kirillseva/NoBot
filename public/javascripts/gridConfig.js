@@ -1,5 +1,6 @@
 var gridster;
 var count = 0;
+var delay_time = 180;
 
 sanitize = function(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -23,6 +24,10 @@ send = function(url, obj) {
     return xhr.status + " " + url + " " + message;
   });
 };
+
+refresh = function(){
+  location.reload(true);
+}
 
 $(function() {
   gridster = $(".gridster > ul").gridster({
@@ -75,7 +80,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      complete: window.location.reload()
+      success: setTimeout(refresh, delay_time)
     });
   });
 
@@ -86,7 +91,7 @@ $(function() {
     s.name = $(this).attr('name');
     console.log(s);
     send(url, s);
-    window.location.reload();
+    setTimeout(refresh, delay_time);
   });
 
   $('.js-remove-widget').on('click', function() {
@@ -96,7 +101,8 @@ $(function() {
     s.name = $(this).attr('name');
     console.log(s);
     send(url, s);
-    window.location.reload();
+    delay(500);
+    setTimeout(refresh, delay_time);
   });
 
 });
