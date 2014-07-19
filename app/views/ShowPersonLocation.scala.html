@@ -3,10 +3,14 @@
           <label>Find person location</label>
           <br>
 
-		<form name="input" action="/selectLocation" method="post">
-		First name: <input type="text" name="loc_fname"><br>
-		Last name: <input type="text" name="loc_lname"><br>
-		<center><input type="submit" value="Find"></center>
+
+		<div class="form-group">
+ 		<form name="input" action="/selectLocation" method="post">
+		First name: <input type="text" class="form-control" name="loc_fname">
+		Last name: <input type="text" class="form-control" name="loc_lname">
+		</div>
+		<center><button type="submit" class="btn btn-primary btn-sm" onclick="">Find</button></center>
+
 
 </form>
 
