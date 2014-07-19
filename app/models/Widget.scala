@@ -31,7 +31,8 @@ object Widget{
       Widget("hello", 1, 1, 1, 1),
       Widget("world", 1, 2, 2, 1),
       Widget("weather", 2, 1, 1, 1),
-      Widget("calendarEventQuery", 1, 3, 2, 1)
+      Widget("calendarEventQuery", 1, 3, 2, 1),
+      Widget("calendarEventNameQuery", 1, 4, 2, 1)
     )
   }
 
