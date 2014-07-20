@@ -1,11 +1,11 @@
 <div>
-<!--    <form method="post/" action="/selectPerson" autocomplete="on"> -->
           <label>Find person data</label>
           <br>
 
 		  
+		
+ 		<form id="peopleForm" action="selectPerson">
 		<div class="form-group">
- 		<form name="input" action="/selectPerson" method="post">
 		First name: <input type="text" class="form-control" name="fname">
 		Last name: <input type="text" class="form-control" name="lname">
 		</div>
@@ -16,12 +16,7 @@
 
    </div>
 
-    <dl>
-	<dd id="person_image">Photo:</dd>
-	<dd id="person_name">Name:</dd>
-      <dd id="person_office">Office:</dd>
-      <dd id="Person_phone"> Phone: </dd>
-	  <dd id="person_additional">Additional data:</dd>
-    </dl>
+<div id="people_result">
+</div>
 	
 

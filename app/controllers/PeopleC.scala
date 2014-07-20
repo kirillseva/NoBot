@@ -9,18 +9,34 @@ import models._
 
 object PeopleC extends Controller {
 
-	def getPerson = Action {
-		implicit request => println(request.body)
-		val json = Json.toJson(Map("success" -> 1))
-		Ok(json)
+	def getPerson = Action(parse.json) {
+		implicit request =>
+		val fname: String = (request.body \ "fname").as[String]
+		val lname: String = (request.body \ "lname").as[String]
+		val peopleOpt = People.returnDataByName(fname, lname)
+		if (peopleOpt != None) {
+		val people = peopleOpt.get
+		Ok(Json.obj(
+			"id" -> people.id, 
+			"first_name" -> people.first_name,
+			"last_name" -> people.last_name, 
+			"status" -> people.status, 
+			"office" -> people.office, 
+			"phone" -> people.phone,
+			"email" -> people.email,
+			"additional_info" -> people.additional_info
+		))
+		} else {
+			Ok(Json.obj("notfound" -> 1))
+		}
 	}
 	
-	def getLocation = Action {
+	def getLocation = Action(parse.json) {
 		implicit request => 
-		val body: AnyContent = request.body
-		val formContent = body.asFormUrlEncoded
-		println(formContent)
-		val json = Json.toJson(Map("success" -> "Yes", "fname" -> formContent.get("loc_fname").toString))
-		Ok(json)
+		val fname: String = (request.body \ "loc_fname").as[String]
+		val lname: String = (request.body \ "loc_lname").as[String]
+		val office = People.returnOfficeByName(fname, lname)
+		val phone = People.returnPhoneByName(fname, lname)
+		Ok(Json.obj("office" -> office, "phone" -> phone))
 	}
 }
