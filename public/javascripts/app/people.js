@@ -15,15 +15,21 @@ $( "#peopleForm" ).submit(function( event ) {
 			$( "#people_result" ).empty().append("Not found");
 		} else {
 			var fname = (data.first_name != null) ? data.first_name : "";
+			var lname = (data.last_name != null) ? data.last_name : "";
+			var status = (data.status != null) ? data.status : "";
+			var office = (data.office != null) ? data.office : "";
 			var phone = (data.phone != null) ? data.phone : "";
+			var email = (data.email != null) ? data.email : "";
+			var additional_info = (data.additional_info != null) ? data.additional_info : "";
+			
 			var result = "<dl>";
-			result += "<dt>First name: </dt> <dd>" + fname + "</dd>";
-			result += data.last_name;
-			result += data.status;
-			result += data.office;
-			result += "<dt>Phone: </dt> <dd>" + phone + "</dd>";
-			result += data.email;
-			result += data.additional_info;
+			result += "<b>First name:</b> " + fname + "<br>";
+			result += "<b>Last name:</b> " + lname + "<br>";
+			result += "<b>Status:</b> " + status + "<br>";
+			result += "<b>Office:</b> " + office + "<br>";
+			result += "<b>Phone:</b> " + phone + "<br>";
+			result += "<b>Email:</b> " + email + "<br>";
+			result += "<b>Additional info:</b> " + additional_info + "<br>";
 			result += "</dl>";
 			$( "#people_result" ).empty().append(result);
 		}

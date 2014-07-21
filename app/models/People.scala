@@ -78,16 +78,4 @@ object People {
     }
   }
   
-  /**
-   * Retrieve email by name.
-   */
-  def returnEmailByName (first_name: String, last_name: String): Option[People] = {
-    DB.withConnection { implicit connection =>
-      SQL("select email from people where first_name = {first_name} OR last_name = {last_name}").on(
-        "first_name" -> first_name,
-		"last_name" -> last_name
-		).as(People.simple.singleOpt)
-    }
-  }
-
-}
+ }
