@@ -58,8 +58,9 @@ create table people (
  primary key (id)
 );
 
-insert into people (first_name, last_name, status, office, phone, email, additional_info) values ("Jane", "Miller", "admnistrator", "267", "(412) 268-4359", "jmiller@cmu.edu", "Jane Dixon Miller is the Programs Manager for the Master of Software Engineering Professional programs. She earned a Bachelor of Arts in English Literature and a Master in Business Administration from Seton Hill University.");
-
+insert into people (first_name, last_name, status, office, phone, email, additional_info) values ("Jane", "Miller", "Associate Director of International Initiatives and Programs Manager", "273", "(412) 268-4359", "jmiller@cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Staff/miller-jane.html">More info</a>');
+insert into people (first_name, last_name, status, office, phone, email, additional_info) values ("Matthew", "Bass", "Associate Director of Software Engineering Professional Programs for Corporate and Alumni Relations", "267", "(412) 268-6163", "mbass@cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/bass-matt.html">More info</a>');
+insert into people (first_name, last_name, status, phone, email, additional_info) values ("David", "Garlan", "Director of Professional Software Engineering Programs", "412-268-5056", "garlan@cs.cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/garlan-david.html">More info</a>');
 
 # --- !Downs
 drop table if exists widget_layout;

@@ -50,7 +50,7 @@ object Widget{
       Widget("world", 1, 2, 2, 1),
       Widget("weather", 2, 1, 1, 1),
       Widget("map", 4, 1, 3, 2),
-	  Widget("ShowPersonData", 1, 3, 2, 2),
+	  Widget("ShowPersonData", 1, 3, 2, 3),
 	  Widget("ShowPersonLocation", 4, 3, 2, 2)
     )
   }
