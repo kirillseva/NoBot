@@ -17,10 +17,15 @@
           case "calendarEventNameQuery" => {
             @views.html.calendarEventNameQuery()
           }
+          case "ShowPersonData" => {
+            @views.html.ShowPersonData()
+          }
+          case "ShowPersonLocation" => {
+            @views.html.ShowPersonLocation()
+          }
           case _ => {
             <h1>@widget.id</h1>
           }
-
         }
       </li>
     }

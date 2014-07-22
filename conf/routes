@@ -29,7 +29,11 @@ POST    /saveLayout                 controllers.WidgetC.save
 POST    /getLocation                controllers.RobotC.getLocation
 POST    /setLocation                controllers.RobotC.setLocation
 
-GET     /test                       controllers.Application.testpage
+POST	  /selectPerson				        controllers.PeopleC.getPerson
+POST	  /selectLocation				      controllers.PeopleC.getLocation
+
+
+GET      /test                      controllers.Application.testpage
 
 POST     /restoreDefault            controllers.WidgetC.restoreDefault
 
