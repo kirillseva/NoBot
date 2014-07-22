@@ -1,5 +1,3 @@
-# --- First database schema
-
 # --- !Ups
 
 create table user (
