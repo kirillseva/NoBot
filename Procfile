@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/cobot -Dhttp.port=${PORT} -Ddb.default.url=$DB_URL -Ddb.default.user=$DB_USER -Ddb.default.password=$DB_PASS -DapplyEvolutions.default=true -J-javaagent:lib/newrelic.jar -J-Dnewrelic.config.file=lib/newrelic.yml
+web: target/universal/stage/bin/cobot -Dhttp.port=${PORT} -Ddb.default.url=$DB_URL -Ddb.default.user=$DB_USER -Ddb.default.password=$DB_PASS -DapplyDownEvolutions.default=true -DapplyEvolutions.default=true -J-javaagent:lib/newrelic.jar -J-Dnewrelic.config.file=lib/newrelic.yml
