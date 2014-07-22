@@ -32,7 +32,6 @@ POST    /setLocation                controllers.RobotC.setLocation
 POST	  /selectPerson				        controllers.PeopleC.getPerson
 POST	  /selectLocation				      controllers.PeopleC.getLocation
 
-
 GET      /test                      controllers.Application.testpage
 
 POST     /restoreDefault            controllers.WidgetC.restoreDefault
