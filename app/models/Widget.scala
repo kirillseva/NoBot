@@ -47,7 +47,7 @@ object Widget{
       Widget("weather", 2, 1, 1, 1),
       Widget("map", 4, 1, 3, 2),
       Widget("calendarEventQuery", 1, 3, 2, 1),
-      Widget("calendarEventNameQuery", 1, 4, 2, 1)
+      Widget("calendarEventNameQuery", 1, 4, 2, 1),
       Widget("ShowPersonData", 1, 3, 2, 3),
       Widget("ShowPersonLocation", 4, 3, 2, 2)
     )
