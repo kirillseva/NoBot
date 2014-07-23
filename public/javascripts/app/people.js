@@ -21,7 +21,7 @@ $( "#peopleForm" ).submit(function( event ) {
 			var phone = (data.phone != null) ? data.phone : "";
 			var email = (data.email != null) ? data.email : "";
 			var additional_info = (data.additional_info != null) ? data.additional_info : "";
-			
+
 			var result = "<dl>";
 			result += "<b>First name:</b> " + fname + "<br>";
 			result += "<b>Last name:</b> " + lname + "<br>";
