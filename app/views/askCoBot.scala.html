@@ -8,24 +8,37 @@
         <div class="form-group">
 
 
-<!--id =""-->       <select id="">
+<!--id =""-->       <select onchange="OnSelectionChange (this)">
           <option value="Find">Find</option>
           <option value="Where">Where</option>
-          <option value="What">What</option>
           <option value="Who">Who</option>
+          <option value="What">What</option>
         </select>
 
-        <br>
+        <span id="onscreenTip">Please select a category</span>
+
+          <br>
 
 
            First name: <input type="text" class="form-control" name="fname">
            Last name: <input type="text" class="form-control" name="lname">
-           Event Name: <input type="text" class="form-control" name="ename">
+<!--           Event Name: <input type="text" class="form-control" name="ename">
+-->
+          <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
+        </div>
 
-        <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
-</div>
 
        </form>
+
+      <form id="locationForm" action="selectLocation">
+        <div class="form-group">
+        First name: <input type="text" class="form-control" name="loc_fname">
+        Last name: <input type="text" class="form-control" name="loc_lname">
+        </div>
+        <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
+
+
+      </form>
 
 
 </div>
