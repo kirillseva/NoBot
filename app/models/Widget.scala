@@ -46,14 +46,10 @@ object Widget{
   // default widget allocation
   def default = {
     Seq(
-      Widget("weather", 2, 1, 1, 1),
+      Widget("weather", 3, 1, 1, 1),
       Widget("map", 4, 1, 3, 2),
-      Widget("calendarEventQuery", 1, 3, 2, 1),
-      Widget("calendarEventNameQuery", 1, 4, 2, 1),
-      Widget("ShowPersonData", 1, 3, 2, 3),
-      Widget("ShowPersonLocation", 4, 3, 2, 2),
-      Widget("askCoBot", 1, 5, 2, 3),
-      Widget("askCoBotFeedback", 3, 6, 2, 2)
+      Widget("askCoBot", 1, 1, 2, 2),
+      Widget("askCoBotFeedback", 1, 3, 2, 2)
     )
   }
 
