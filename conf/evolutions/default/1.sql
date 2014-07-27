@@ -6,7 +6,6 @@ create table user (
   password                  varchar(255) not null
 );
 
-
 create table layout (
   id                        int not null auto_increment,
   task                      varchar(255) not null,
