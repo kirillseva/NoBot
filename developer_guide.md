@@ -31,6 +31,8 @@ Since time changes very often (every second),
 it makes no sense to show any static content for this widget.
 So, this widget doesn't require any model, or even a special controller, because time widget doesn't imply any interaction!
 We'll start with the view.
+Let's create a new file in the */views/* folder called **time.scala.html**.
+
 Our view would look very simple.
 
 ```html
@@ -46,7 +48,7 @@ case "time" => {
   @views.html.time()
 }
 ```
-And we also need to register this widget with our system. Let's modify **Widget.scala** model.
+And we also need to register this widget with our system. Let's modify **Widget.scala** model and add **time** to the list of all widgets.
 
 ```ruby
 val allWidgets = Seq(
