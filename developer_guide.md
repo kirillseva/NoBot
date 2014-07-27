@@ -68,13 +68,59 @@ cd /path/to/Nobot
 ```
 
 And there it is! Add the time widget to your screen and save this layout.
+
 <a href="http://tinypic.com?ref=ibbfo8" target="_blank"><img src="http://i59.tinypic.com/ibbfo8.png" border="0" alt="Image and video hosting by TinyPic" width="140" height="140"></a>
 
 But this is not the time widget yet. Let's add some javascript code that would get current time of the client and would show it on the screen.
 Let's add a new file to the directory */public/javascript/app/* called **time.js**.
 
+```javascript
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
 
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    t = setTimeout(function () {
+        startTime()
+    }, 500);
+}
 
+startTime();
+```
 
+Now, we need to add this script to our main view. Add this line at the end of the **main.scala.html**.
 
-.
+```html
+<script type="text/javascript" src="@routes.Assets.at("javascripts/app/time.js")"></script>
+```
+
+That's it! Now, let's reload the page and see the result.
+Hey, there is time right on the screen!
+
+<a href="http://tinypic.com?ref=29dvgpf" target="_blank"><img src="http://i62.tinypic.com/29dvgpf.png" border="0" alt="Image and video hosting by TinyPic" width="140" height="140"></a>
+
+But for now, it doesn't look quite good enough. Let's modify our javascript code to show
+nicer result.
+Modify the line in the script that changes html contents.
+
+```javascript
+document.getElementById('time').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+```
+
+Now, let's reload the page.
+
+<a href="http://tinypic.com?ref=igiyq9" target="_blank"><img src="http://i61.tinypic.com/igiyq9.png" border="0" alt="Image and video hosting by TinyPic" width="140" height="140"></a>
+
+And that's it! We've just created a widget that shows dynamic content on the screen
+in under 10 minutes! And we have successfully added this widget to the existing system.
