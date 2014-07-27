@@ -33,7 +33,8 @@ object Widget{
     "calendarEventQuery",
     "calendarEventNameQuery",
     "ShowPersonData",
-    "ShowPersonLocation"
+    "ShowPersonLocation",
+    "time"
   )
 
   def addable(online: Seq[Widget], all: Seq[String]): Seq[String] = {
