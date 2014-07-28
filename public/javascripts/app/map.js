@@ -1,8 +1,40 @@
 var w, h;
 var radius = 7;
+var POIradius = 130;
 var speed = 1;
 first = true;
 var Pin = "None";
+
+var SCRG300 = {
+  SCR261: {
+    x: 640,
+    y: 965
+  },
+  SCR262: {
+    x: 750,
+    y: 965
+  },
+  SCR263: {
+    x: 870,
+    y: 965
+  },
+  SCR265: {
+    x: 800,
+    y: 1180
+  },
+  SCR281: {
+    x: 640,
+    y: 750
+  },
+  SCR282: {
+    x: 755,
+    y: 750
+  },
+  SCRLibrary: {
+    x: 1024,
+    y: 1436
+  }
+};
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
@@ -94,13 +126,42 @@ var robot = {
   dest_y: 0
 };
 
+printLoc = function() {
+  console.log("x: " + robot.x);
+  console.log("y: " + robot.y);
+  console.log("---------------");
+}
+
 var background = new Image();
 background.src = "assets/images/300SCRG.png";
 
+function getDistance(a, b) {
+  return Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+};
 
+function showPOI() {
+  jQuery.each(SCRG300, function(i, val) {
+    var dist = getDistance(val, robot);
+    if (i == "SCR265") {
+      if (dist < 300) {
+        ctx.font = "14pt Helvetica Neue";
+        ctx.fillStyle="#2c3e50";
+        ctx.fillText(i, w/2 + (val.x - robot.x)*0.6 - 40, h/2 + (val.y - robot.y)*0.6);
+      }
+    } else {
+      if (dist < POIradius) {
+        ctx.font = "14pt Helvetica Neue";
+        ctx.fillStyle="#2c3e50";
+        ctx.fillText(i, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y);
+        console.log(i);
+      };
+    }
+  });
+};
 
 function draw() {
   ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
+  showPOI();
   robot.render();
 }
 
