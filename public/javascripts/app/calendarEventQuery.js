@@ -85,6 +85,7 @@ $(document).ready(function(e) {
   })
 
   $.getJSON( "/calendarC282", function( json5 ) {
+    console.log(json5);
     creator282 = json5.displayName;
     eventName282 = json5.summary;
 //    times = jsonC.dateTime;

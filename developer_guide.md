@@ -1,6 +1,10 @@
 # How to develop a widget for CoBot website?
 
-The CoBot framework follows the MVC architectural pattern that guides developers
+The CoBot framework is built on top of Play Framework. Play is a web-devevelopment framework
+written in Scala that allows to quickly and easily build fast and responsive
+web application using Java or Scala. For more information please refer to the [Play Framework's documentation](http://www.playframework.com/documentation/2.3.x/Home).
+
+The CoBot framework follows the [MVC architectural pattern](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) that guides developers
 and makes creating new widgets a simple and manageable task.
 Developing a widget consists of the following steps:
 
@@ -12,7 +16,7 @@ location in the database and retrieving it.
 2. Create a view. The view is what the user will see on the screen.
 From a developer's perspective a view is an html template. Play framework
 allows to generate html based on the request and the data that's served to the template.
-For more information please refer to the [Play Framework's documentation](http://www.playframework.com/documentation/2.3.x/Home).
+Please see the [official documentation](http://www.playframework.com/documentation/2.3.x/ScalaTemplates) for more information about how templates work.
 
 3. Register your view with the system by modifying the **widgetry.scala.html** view and the **Widget.scala** model.
 

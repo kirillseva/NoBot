@@ -2,6 +2,7 @@ var w, h;
 var radius = 7;
 var speed = 1;
 first = true;
+var Pin = "None";
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
