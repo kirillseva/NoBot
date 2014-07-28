@@ -1,3 +1,12 @@
+# --- !Downs
+drop table if exists widget_layout;
+drop table if exists people;
+drop table if exists location;
+drop table if exists widget;
+drop table if exists layout;
+drop table if exists user;
+drop table if exists people;
+
 # --- !Ups
 
 create table user (
@@ -52,18 +61,10 @@ create table people (
  phone			                varchar(255),
  email			                varchar(255),
  additional_info 	          varchar(255),
+ unique key fullname (first_name, last_name),
  primary key (id)
 );
 
-insert into people (first_name, last_name, status, office, phone, email, additional_info) values ("Jane", "Miller", "Associate Director of International Initiatives and Programs Manager", "273", "(412) 268-4359", "jmiller@cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Staff/miller-jane.html">More info</a>');
-insert into people (first_name, last_name, status, office, phone, email, additional_info) values ("Matthew", "Bass", "Associate Director of Software Engineering Professional Programs for Corporate and Alumni Relations", "267", "(412) 268-6163", "mbass@cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/bass-matt.html">More info</a>');
-insert into people (first_name, last_name, status, phone, email, additional_info) values ("David", "Garlan", "Director of Professional Software Engineering Programs", "412-268-5056", "garlan@cs.cmu.edu", '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/garlan-david.html">More info</a>');
-
-# --- !Downs
-drop table if exists widget_layout;
-drop table if exists people;
-drop table if exists location;
-drop table if exists widget;
-drop table if exists layout;
-drop table if exists user;
-drop table if exists people;
+insert into people (first_name, last_name, status, office, phone, email, additional_info) values ('Jane', 'Miller', 'Associate Director of International Initiatives and Programs Manager', '273', '(412) 268-4359', 'jmiller@cmu.edu', '<a href="http://mse.isri.cmu.edu/software-engineering/Staff/miller-jane.html">More info</a>');
+insert into people (first_name, last_name, status, office, phone, email, additional_info) values ('Matthew', 'Bass', 'Associate Director of Software Engineering Professional Programs for Corporate and Alumni Relations', '267', '(412) 268-6163', 'mbass@cmu.edu', '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/bass-matt.html">More info</a>');
+insert into people (first_name, last_name, status, phone, email, additional_info) values ('David', 'Garlan', 'Director of Professional Software Engineering Programs', '412-268-5056', 'garlan@cs.cmu.edu', '<a href="http://mse.isri.cmu.edu/software-engineering/Faculty/garlan-david.html">More info</a>');
