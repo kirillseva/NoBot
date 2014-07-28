@@ -5,6 +5,10 @@ scala:
   - 2.10.3
 before_script:
 #  - unzip -q play-${PLAY_VERSION}.zip
+  - export DB_DRIVER=org.h2.Driver
+  - export DB_URL="jdbc:h2:mem:play;MODE=MYSQL"
+  - export DB_USER=sa
+  - export DB_PASS=""
 script:
   - sbt coveralls
 #deploy:
