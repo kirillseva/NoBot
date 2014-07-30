@@ -1,6 +1,6 @@
 # How to develop a widget for CoBot website?
 
-The CoBot framework is built on top of Play Framework. Play is a web-devevelopment framework
+The CoBot framework is built on top of Play Framework. Play is a web-development framework
 written in Scala that allows to quickly and easily build fast and responsive
 web application using Java or Scala. For more information please refer to the [Play Framework's documentation](http://www.playframework.com/documentation/2.3.x/Home).
 
