@@ -30,7 +30,7 @@ object Widget{
   val allWidgets = Seq(
     "weather",
     "map",
-    "time"
+    "time",
     "askCoBot",
     "askCoBotFeedback"
   )
