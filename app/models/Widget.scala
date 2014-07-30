@@ -41,14 +41,12 @@ object Widget{
   }
 
   // default widget allocation
-  def default = {
-    Seq(
+  val default = Seq(
       Widget("weather", 3, 1, 1, 1),
       Widget("map", 4, 1, 3, 2),
       Widget("askCoBot", 1, 1, 2, 2),
       Widget("askCoBotFeedback", 1, 3, 2, 2)
     )
-  }
 
   val simple = {
     get[String]("widget.id") ~
@@ -75,6 +73,22 @@ object Widget{
       ).as(Widget.simple *)
     }
   }
+
+  def saveDefault(email: String, task: String) = {
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+        replace into layout (task, email)
+        values ({task}, {email})
+        """
+      ).on(
+        "task" -> task,
+        "email" -> email
+      ).executeUpdate()
+    }
+    default.map(widget => addWidget(widget.id, task, email))
+  }
+
   def addWidget(widget: String, task: String, email: String) = {
     //get the latest id of layout
     val layoutID = DB.withConnection { implicit connection =>
@@ -139,6 +153,7 @@ object Widget{
         "email" -> email
       ).executeUpdate()
     }
+    saveDefault(email, task)
   }
 
   def removeWidget(widget: String, task: String, email: String) = {
