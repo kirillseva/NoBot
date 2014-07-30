@@ -80,7 +80,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      success: setTimeout(refresh, 250)
+      success: setTimeout(refresh, 400)
     });
   });
 
