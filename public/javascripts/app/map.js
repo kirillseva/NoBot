@@ -4,6 +4,10 @@ var POIradius = 130;
 var speed = 1;
 first = true;
 var Pin = "None";
+var background = new Image();
+background.src = "assets/images/300SCRG.png";
+var pinimage = new Image();
+pinimage.src = "assets/images/pin-red-icon.png"
 
 var SCRG300 = {
   SCR261: {
@@ -196,9 +200,6 @@ printLoc = function() {
   console.log("---------------");
 }
 
-var background = new Image();
-background.src = "assets/images/300SCRG.png";
-
 function getDistance(a, b) {
   return Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 };
@@ -225,6 +226,10 @@ function showPOI() {
 function draw() {
   ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
   showPOI();
+  if (Pin != "None") {
+    var pinloc = SCRG300[Pin];
+    ctx.drawImage(pinimage, w/2 + pinloc.x - robot.x - 20, h/2 + pinloc.y - robot.y + 10, 30, 30);
+  };
   robot.render();
 }
 
