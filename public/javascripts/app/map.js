@@ -18,6 +18,10 @@ var SCRG300 = {
     x: 870,
     y: 965
   },
+  SCR264: {
+    x: 970,
+    y: 965
+  },
   SCR265: {
     x: 800,
     y: 1180
@@ -31,8 +35,68 @@ var SCRG300 = {
     y: 750
   },
   SCRLibrary: {
-    x: 1024,
+    x: 1016,
     y: 1436
+  },
+  SCR278: {
+    x: 460,
+    y: 635
+  },
+  SCR277: {
+    x: 460,
+    y: 735
+  },
+  SCR276: {
+    x: 460,
+    y: 840
+  },
+  SCR283: {
+    x: 855,
+    y: 750
+  },
+  "Game Room": {
+    x: 938,
+    y: 750
+  },
+  SCR275: {
+    x: 460,
+    y: 940
+  },
+  SCR274: {
+    x: 460,
+    y: 1040
+  },
+  SCR273: {
+    x: 460,
+    y: 1140
+  },
+  SCR272: {
+    x: 460,
+    y: 1240
+  },
+  SCR271: {
+    x: 460,
+    y: 1370
+  },
+  SCR270: {
+    x: 590,
+    y: 1430
+  },
+  SCR269: {
+    x: 710,
+    y: 1430
+  },
+  SCR269: {
+    x: 710,
+    y: 1430
+  },
+  SCR268: {
+    x: 810,
+    y: 1430
+  },
+  SCR267: {
+    x: 910,
+    y: 1430
   }
 };
 
@@ -153,7 +217,6 @@ function showPOI() {
         ctx.font = "14pt Helvetica Neue";
         ctx.fillStyle="#2c3e50";
         ctx.fillText(i, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y);
-        console.log(i);
       };
     }
   });
