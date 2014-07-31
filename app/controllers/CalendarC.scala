@@ -114,5 +114,10 @@ object CalendarC extends Controller {
       }
   }
 
+  def getEvent = Action(parse.json) {
+    implicit request =>
+    val ename: String = (request.body \ "ename").as[String]
+    Ok(Json.obj("ename" -> ename))
+  }
 
 }

@@ -4,17 +4,15 @@
       <br>
 
            <select onchange="OnSelectionChange (this)">
-                <option value="Find">Find</option>
-                <option value="Where">Where</option>
                 <option value="Who">Who</option>
                 <option value="What">What</option>
             </select>
 
-            <span id="onscreenTip">Please select a category</span>
+            <span id="onscreenTip">Find a person's information</span>
 
       <br>
 
-      <div id="who" style="display:none">
+      <div id="who" style="display:block">
           <form id="peopleForm" action="selectPerson">
 
               <div class="form-group">
@@ -26,45 +24,32 @@
           </form>
       </div>
 
-
-      <div id="where" style="display:none">
-          <form id="locationForm" action="selectLocation">
-
-                <div class="form-group">
-                    First name: <input type="text" class="form-control" name="loc_fname">
-                    Last name: <input type="text" class="form-control" name="loc_lname">
-                </div>
-                <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
-
-          </form>
-      </div>
-
-
       <div id="what" style="display:none">
-<!-- fix id & action -->         <form id="locationForm" action="selectLocation">
+          <form id="eventForm" action="selectEvent">
 
                 <div class="form-group">
                     Event name: <input type="text" class="form-control" name="ename">
                 </div>
                 <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
 
-                <!-- horizontal line -->
-                <hr>
-
-                <div>Select a room to see what event is happening in it today:</div>
-
-
-                <select id="roomNoName">
-                   <option value="       ">       </option>
-                   <option value="SCR_261">SCR 261</option>
-                   <option value="SCR_262">SCR 262</option>
-                   <option value="SCR_263">SCR 263</option>
-                   <option value="SCR_281">SCR 281</option>
-                   <option value="SCR_282">SCR 282</option>
-                   <option value="Coach_Library">Coach Library</option>
-                 </select>
-
-               <button type="button" class="btn btn-primary btn-sm" onclick="selectRoomEvent()">Search</button>
-
           </form>
+
+          <!-- horizontal line -->
+          <hr>
+
+          <div>Select a room to see what event is happening in it today:</div>
+
+              <select id="roomNoName">
+                 <option value="       ">       </option>
+                 <option value="SCR_261">SCR 261</option>
+                 <option value="SCR_262">SCR 262</option>
+                 <option value="SCR_263">SCR 263</option>
+                 <option value="SCR_281">SCR 281</option>
+                 <option value="SCR_282">SCR 282</option>
+                 <option value="Coach_Library">SCR Library</option>
+               </select>
+
+           <button type="button" class="btn btn-primary btn-sm" onclick="selectRoomEvent()">Search</button>
+
+
       </div>

@@ -23,6 +23,7 @@ $( "#peopleForm" ).submit(function( event ) {
 			var additional_info = (data.additional_info != null) ? data.additional_info : "";
 
 			var result = "<dl>";
+			result += "<b>" + fname + " " + lname + "</b><br>";
 			result += "<b>First name:</b> " + fname + "<br>";
 			result += "<b>Last name:</b> " + lname + "<br>";
 			result += "<b>Status:</b> " + status + "<br>";

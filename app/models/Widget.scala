@@ -49,7 +49,7 @@ object Widget{
       Widget("weather", 3, 1, 1, 1),
       Widget("map", 4, 1, 3, 2),
       Widget("askCoBot", 1, 1, 2, 2),
-      Widget("askCoBotFeedback", 1, 3, 2, 2)
+      Widget("askCoBotFeedback", 1, 3, 3, 2)
     )
   }
 

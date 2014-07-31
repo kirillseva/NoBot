@@ -12,6 +12,8 @@ var eventName282 = "CoBot Meeting";
 var eventNameCL = "CoBot Meeting";
 var roomSelectionCounter = -1;
 
+var eventResult = "";
+
 //var times = "11:00am";
 
 function updateCalendarQuery(){
@@ -36,18 +38,22 @@ function updateCalendarQueryName(){
   if (roomSelectionCounter == 0) {
     document.getElementById('event_name').innerHTML = "Please select a room!";
   } else if (roomSelectionCounter == 1) {
-      document.getElementById('event_name').innerHTML = eventName261;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   } else if (roomSelectionCounter == 2) {
-      document.getElementById('event_name').innerHTML = eventName262;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   } else if (roomSelectionCounter == 3) {
-      document.getElementById('event_name').innerHTML = eventName263;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   } else if (roomSelectionCounter == 4) {
-      document.getElementById('event_name').innerHTML = eventName281;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   } else if (roomSelectionCounter == 5) {
-      document.getElementById('event_name').innerHTML = eventName282;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   } else if (roomSelectionCounter == 6) {
-      document.getElementById('event_name').innerHTML = eventNameCL;
+      document.getElementById('event_name').innerHTML = askCoBotEvents(roomSelectionCounter-1);
   }
+
+  document.getElementById('event_name').style.display = "block";
+  document.getElementById('event_result').style.display = "none";
+
 }
 
 
@@ -171,5 +177,138 @@ function selectRoomEvent(){
           updateCalendarQueryName();
           break;
     }
-
 }
+
+function findRoom(counter){
+    var roomNumber = "";
+    switch(counter) {
+      case 0: //SCR 261 selected
+          roomNumber = "SCR 261";
+          break;
+      case 1: //SCR 262 selected
+          roomNumber = "SCR 262";
+          break;
+      case 2: //SCR 263 selected
+          roomNumber = "SCR 263";
+          break;
+      case 3: //SCR 281 selected
+          roomNumber = "SCR 281";
+          break;
+      case 4: //SCR 282 selected
+          roomNumber = "SCR 282";
+          break;
+      case 5: //Coach Library selected
+          roomNumber = "SCR Library";
+          break;
+    }
+
+    return roomNumber;
+}
+
+
+// This is a function that converts incoming event jsons into presentatble output for Ask CoBot feedback
+function askCoBotEvents(counter){
+
+    eventResult = "";
+    var foundswitch = false;
+    var eventNames = [String(eventName261), String(eventName262), String(eventName263), String(eventName281), String(eventName282), String(eventNameCL)];
+    var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
+
+
+    var n = eventNames[counter].length;
+    var eventLocation = findRoom(counter);
+
+    if (n != 0) {
+
+        var index;
+        var foundEvent = eventNames[counter].split(",");
+        var foundCreator = creatorNames[counter].split(",");
+
+        //iterate through the selected MSE SCR google calendar
+        for	(index = 0; index < foundEvent.length; ++index) {
+            eventResult += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
+            eventResult += "<b>Event Location: </b>" + eventLocation + "<br>";
+            eventResult += "<b>Booked By: </b>" + foundCreator[index] + "<hr>";
+        }
+    } else {
+          eventResult += "No Events Found";
+    }
+
+    return eventResult;
+}
+
+// Attach a submit handler to the  Event Name form
+$( "#eventForm" ).submit(function( event ) {
+  // Stop form from submitting normally
+  event.preventDefault();
+
+  // Get some values from elements on the page:
+  var $form = $( this ),
+  ename = $form.find( "input[name='ename']" ).val(),
+  action_url = $form.attr( "action" );
+
+  // This is a function that processes response
+  var onSuccess = function(data){
+
+    var result = "";
+    var counter;
+    var foundswitch = false;
+    var eventNames = [String(eventName261), String(eventName262), String(eventName263), String(eventName281), String(eventName282), String(eventNameCL)];
+
+    //set flag if event is found and print feedback heading
+    if ((String(eventNames).search(data.ename)) != -1){
+        foundswitch = true;
+        var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
+
+    }
+
+    //iterate through every MSE SCR google calendar
+    for	(counter = 0; counter < eventNames.length; ++counter) {
+
+        //check if entered string is in any of the MSE SCR google calendar events
+        var found = eventNames[counter].search(data.ename);
+        if (found != -1) {
+
+//            console.log(eventNames[counter]);
+//            console.log(counter);
+
+            var eventLocation = findRoom(counter);
+
+            var index;
+            var foundEvent = eventNames[counter].split(",");
+            var foundCreator = creatorNames[counter].split(",");
+
+            for	(index = 0; index < foundEvent.length; ++index) {
+                if ((foundEvent[index].search(data.ename)) != -1){
+
+                    result += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
+                    result += "<b>Event Location: </b>" + eventLocation + "<br>";
+                    result += "<b>Booked By: </b>" + foundCreator[index] + "<hr>";
+                }
+            }
+
+        } else {
+              if (!foundswitch){
+                  result = "Event Not Found<br>";
+              }
+            }
+    }
+
+    $( "#event_result" ).empty().append(result)
+    document.getElementById('event_result').style.display = "block";
+    document.getElementById('event_name').style.display = "none";
+  }
+
+  // Send the data using post
+  $.ajax({
+    type: "POST",
+    url: action_url,
+    data: JSON.stringify({ "ename": ename }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: onSuccess,
+    failure: function(errMsg) {
+      alert(errMsg);
+    }
+  });
+});
