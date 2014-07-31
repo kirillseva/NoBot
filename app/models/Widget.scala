@@ -74,21 +74,6 @@ object Widget{
     }
   }
 
-  def saveDefault(email: String, task: String) = {
-    DB.withConnection { implicit connection =>
-      SQL(
-        """
-        replace into layout (task, email)
-        values ({task}, {email})
-        """
-      ).on(
-        "task" -> task,
-        "email" -> email
-      ).executeUpdate()
-    }
-    default.map(widget => addWidget(widget.id, task, email))
-  }
-
   def addWidget(widget: String, task: String, email: String) = {
     //get the latest id of layout
     val layoutID = DB.withConnection { implicit connection =>
@@ -153,7 +138,6 @@ object Widget{
         "email" -> email
       ).executeUpdate()
     }
-    saveDefault(email, task)
   }
 
   def removeWidget(widget: String, task: String, email: String) = {

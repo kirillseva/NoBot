@@ -81,8 +81,6 @@ object User {
         "password" -> user.password
       ).executeUpdate()
 
-      Widget.saveDefault(user.email, "/")
-      Widget.saveDefault(user.email, "/test")
       user
 
     }

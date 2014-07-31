@@ -234,6 +234,8 @@ function draw() {
 }
 
 $(document).ready(function(e) {
+  //save existing layout on startup to ensure well-being
+  saveDefault();
   var startx, starty, map;
   startx = document.getElementById("map").getAttribute("data-sizex");
   starty = document.getElementById("map").getAttribute("data-sizey");

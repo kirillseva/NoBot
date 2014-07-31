@@ -25,6 +25,15 @@ send = function(url, obj) {
   });
 };
 
+saveLayout = function() {
+  var url = "/saveLayout";
+  var s = {};
+  s.task = $(location).attr('pathname');
+  s.widgets = gridster.serialize();
+  send(url, s);
+  console.log("saved!");
+}
+
 refresh = function(){
   location.reload(true);
 }
@@ -59,15 +68,7 @@ $(function() {
   }).data('gridster');
 
 
-  $('.js-serialize').on('click', function() {
-    var url = "/saveLayout";
-    var s = {};
-    s.task = $(location).attr('pathname');
-    s.widgets = gridster.serialize();
-    send(url, s);
-
-    console.log(JSON.stringify(s));
-  });
+  $('.js-serialize').on('click', saveLayout());
 
   $('.js-restore-default').on('click', function() {
     var url = "/restoreDefault";
@@ -82,6 +83,7 @@ $(function() {
       data: JSON.stringify(s),
       success: setTimeout(refresh, 400)
     });
+    console.log("restoring...");
   });
 
   $('.js-add-widget').on('click', function() {
