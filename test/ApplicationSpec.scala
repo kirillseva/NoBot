@@ -61,5 +61,37 @@ class ApplicationSpec extends Specification {
       }
     }
 
+    "should get calendar info for SCR282" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        var result  = route( FakeRequest( GET, "/calendarC282").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+        contentType(result) must beSome("application/json")
+      }
+    }
+
+    "should get calendar info for SCR262" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        var result  = route( FakeRequest( GET, "/calendarC262").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+        contentType(result) must beSome("application/json")
+      }
+    }
+
+    "should get calendar info for SCR263" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        var result  = route( FakeRequest( GET, "/calendarC263").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+        contentType(result) must beSome("application/json")
+      }
+    }
+
+    "should get weather info" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        var result  = route( FakeRequest( GET, "/weatherC").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+        contentType(result) must beSome("application/json")
+      }
+    }
+
   }
 }
