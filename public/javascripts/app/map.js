@@ -40,7 +40,7 @@ var SCRG300 = {
   },
   SCRLibrary: {
     x: 1016,
-    y: 1436
+    y: 1430
   },
   SCR278: {
     x: 460,
