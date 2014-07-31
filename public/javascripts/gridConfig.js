@@ -66,8 +66,6 @@ $(function() {
       };
     }
   }).data('gridster');
-
-
   $('.js-serialize').on('click', saveLayout());
 
   $('.js-restore-default').on('click', function() {

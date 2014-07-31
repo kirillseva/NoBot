@@ -234,12 +234,13 @@ function draw() {
 }
 
 $(document).ready(function(e) {
-  //save existing layout on startup to ensure well-being
-  saveDefault();
   var startx, starty, map;
   startx = document.getElementById("map").getAttribute("data-sizex");
   starty = document.getElementById("map").getAttribute("data-sizey");
   set_canvas(startx, starty);
   setInterval(getLoc, 500);
   setInterval(updateLoc, 10);
+
+  //store the existing layout on each load of the page to make sure there is always a record in the DB
+  saveDefault();
 });
