@@ -79,7 +79,7 @@ $(function() {
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
       data: JSON.stringify(s),
-      success: setTimeout(refresh, 400)
+      success: setTimeout(refresh, delay_time)
     });
     console.log("restoring...");
   });

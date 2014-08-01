@@ -14,7 +14,59 @@ var roomSelectionCounter = -1;
 
 var eventResult = "";
 
+var calendarData = {
+  SCR261: {
+    currentEvent: "",
+    raw: ""
+  },
+  SCR262: {
+    currentEvent: "",
+    raw: ""
+  },
+  SCR263: {
+    currentEvent: "",
+    raw: ""
+  },
+  SCR281: {
+    currentEvent: "",
+    raw: ""
+  },
+  SCR282: {
+    currentEvent: "",
+    raw: ""
+  },
+  SCRLibrary: {
+    currentEvent: "",
+    raw: ""
+  }
+};
+
 //var times = "11:00am";
+
+function determineCurrentEvents() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  jQuery.each(calendarData, function(i, val) {
+    var data = val.raw.dateTime;
+    console.log(i);
+    console.log(data);
+  });
+}
+
+function parseTime(timestring){
+  var begin = timestring.indexOf("T") + 1;
+  var subs = timestring.substr(begin, 8);
+  var hours = subs.substr(0, 2);
+  var mins = subs.substr(3, 2);
+  var secs = subs.substr(6, 2);
+  var result = {};
+  result.hours = hours * 1;
+  result.mins = mins * 1;
+  result.secs = secs * 1;
+  return result;
+}
 
 function updateCalendarQuery(){
   if (roomSelectionCounter == 0) {
@@ -60,7 +112,9 @@ function updateCalendarQueryName(){
 $(document).ready(function(e) {
   $.getJSON( "/calendarC261", function( json1 ) {
     creator261 = json1.displayName;
+    calendarData["SCR261"].raw = json1;
     eventName261 = json1.summary;
+    console.log(json1);
 //    times = jsonC.dateTime;
     updateCalendarQuery();
     updateCalendarQueryName();
@@ -68,6 +122,7 @@ $(document).ready(function(e) {
 
   $.getJSON( "/calendarC262", function( json2 ) {
     creator262 = json2.displayName;
+    calendarData["SCR262"].raw = json2;
     eventName262 = json2.summary;
 //    times = jsonC.dateTime;
     updateCalendarQuery();
@@ -76,6 +131,7 @@ $(document).ready(function(e) {
 
   $.getJSON( "/calendarC263", function( json3 ) {
     creator263 = json3.displayName;
+    calendarData["SCR263"].raw = json3;
     eventName263 = json3.summary;
 //    times = jsonC.dateTime;
     updateCalendarQuery();
@@ -84,6 +140,7 @@ $(document).ready(function(e) {
 
   $.getJSON( "/calendarC281", function( json4 ) {
     creator281 = json4.displayName;
+    calendarData["SCR281"].raw = json4;
     eventName281 = json4.summary;
 //    times = jsonC.dateTime;
     updateCalendarQuery();
@@ -91,8 +148,8 @@ $(document).ready(function(e) {
   })
 
   $.getJSON( "/calendarC282", function( json5 ) {
-    console.log(json5);
     creator282 = json5.displayName;
+    calendarData["SCR282"].raw = json5;
     eventName282 = json5.summary;
 //    times = jsonC.dateTime;
     updateCalendarQuery();
@@ -101,12 +158,14 @@ $(document).ready(function(e) {
 
   $.getJSON( "/calendarCCoachLibrary", function( json6 ) {
     creatorCL = json6.displayName;
+    calendarData["SCRLibrary"].raw = json6;
     eventNameCL = json6.summary;
 //    times = jsonC.dateTime;
     updateCalendarQuery();
     updateCalendarQueryName();
   })
 
+  setTimeout(function() { determineCurrentEvents(); }, 500);
 });
 
 function selectRoomCreator(){

@@ -144,6 +144,14 @@ getLoc = function() {
   });
 };
 
+findEvent = function(room) {
+  var result = "...";
+  if (room = "SCR261") {
+    
+  }
+  return result;
+}
+
 setLoc = function(new_loc) {
   var url = "/setLocation";
   send(url, new_loc);
@@ -212,12 +220,20 @@ function showPOI() {
         ctx.font = "14pt Helvetica Neue";
         ctx.fillStyle="#2c3e50";
         ctx.fillText(i, w/2 + (val.x - robot.x)*0.6 - 40, h/2 + (val.y - robot.y)*0.6);
+        ctx.font = "10pt Helvetica Neue";
+        ctx.fillStyle="#2c3e50";
+        var text = findEvent(i);
+        ctx.fillText(text, w/2 + (val.x - robot.x)*0.6 - 40, h/2 + (val.y - robot.y)*0.6 + 10);
       }
     } else {
       if (dist < POIradius) {
         ctx.font = "14pt Helvetica Neue";
         ctx.fillStyle="#2c3e50";
         ctx.fillText(i, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y);
+        ctx.font = "10pt Helvetica Neue";
+        ctx.fillStyle="#2c3e50";
+        var text = findEvent(i);
+        ctx.fillText(text, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y + 10);
       };
     }
   });
@@ -241,6 +257,5 @@ $(document).ready(function(e) {
   setInterval(getLoc, 500);
   setInterval(updateLoc, 10);
 
-  //store the existing layout on each load of the page to make sure there is always a record in the DB
-  saveDefault();
+
 });
