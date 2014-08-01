@@ -24,6 +24,7 @@ GET     /calendarC263               controllers.CalendarC.googleCalendarSCR263
 GET     /calendarC281               controllers.CalendarC.googleCalendarSCR281
 GET     /calendarC282               controllers.CalendarC.googleCalendarSCR282
 GET     /calendarCCoachLibrary      controllers.CalendarC.googleCalendarCoachLibrary
+POST    /selectEvent                controllers.CalendarC.getEvent
 
 POST    /saveLayout                 controllers.WidgetC.save
 POST    /getLocation                controllers.RobotC.getLocation

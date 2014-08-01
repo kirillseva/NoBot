@@ -37,7 +37,7 @@ object People {
    */
   def returnDataByName(first_name: String, last_name: String): Option[People] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from people where first_name = {first_name} OR last_name = {last_name}").on(
+      SQL("select * from people where first_name = {first_name} AND last_name = {last_name}").on(
         "first_name" -> first_name,
 		"last_name" -> last_name
       ).as(People.simple.singleOpt)
@@ -49,7 +49,7 @@ object People {
    */
   def returnOfficeByName (first_name: String, last_name: String): Option[Int] = {
     DB.withConnection { implicit connection =>
-      val result: List[Option[Int]] = SQL("select office from people where first_name = {first_name} OR last_name = {last_name}").on(
+      val result: List[Option[Int]] = SQL("select office from people where first_name = {first_name} AND last_name = {last_name}").on(
         "first_name" -> first_name,
 		"last_name" -> last_name
 		).as(get[Option[Int]]("office") *)
@@ -60,13 +60,13 @@ object People {
 	}
     }
   }
-  
+
   /**
    * Retrieve Phone by name.
    */
   def returnPhoneByName (first_name: String, last_name: String): Option[String] = {
     DB.withConnection { implicit connection =>
-      val result: List[Option[String]] = SQL("select phone from people where first_name = {first_name} OR last_name = {last_name}").on(
+      val result: List[Option[String]] = SQL("select phone from people where first_name = {first_name} AND last_name = {last_name}").on(
         "first_name" -> first_name,
 		"last_name" -> last_name
 		).as(get[Option[String]]("phone") *)
@@ -77,5 +77,5 @@ object People {
 	}
     }
   }
-  
+
  }
