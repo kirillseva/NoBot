@@ -331,15 +331,8 @@ $( "#eventForm" ).submit(function( event ) {
     var foundswitch = false;
     var eventNames = [String(eventName261), String(eventName262), String(eventName263), String(eventName281), String(eventName282), String(eventNameCL)];
     var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
-
     var searchTerm = data.ename;
     var size = searchTerm.length;
-
-//    console.log(searchTerm);
-//    console.log(size);
-
-//    var t = (String(eventNames).search(data.ename));
-//    console.log("t: "+ t);
 
     //set flag if event is found and searchTerm is at least 1 character long
     if ((String(eventNames).search(data.ename)) != -1 && size > 0){
@@ -347,15 +340,14 @@ $( "#eventForm" ).submit(function( event ) {
 
     }
 
+    var pinFoundSwitch = false;
+
     //iterate through every MSE SCR google calendar
     for	(counter = 0; counter < eventNames.length; ++counter) {
 
         //check if entered string is in any of the MSE SCR google calendar events
         var found = eventNames[counter].search(data.ename);
         if (found != -1 && size > 0) {
-
-//            console.log(eventNames[counter]);
-//            console.log(counter);
 
             var eventLocation = findRoom(counter);
 
@@ -365,10 +357,18 @@ $( "#eventForm" ).submit(function( event ) {
 
             for	(index = 0; index < foundEvent.length; ++index) {
                 if ((foundEvent[index].search(data.ename)) != -1 && size > 0){
-                    Pin = eventLocation;
                     result += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
                     result += "<b>Event Location: </b>" + eventLocation + "<br>";
                     result += "<b>Booked By: </b>" + foundCreator[index] + "<hr>";
+
+                    //check that multiple results are being shown - pin only displays for 1 result
+                    if (!pinFoundSwitch){
+                      pinFoundSwitch = true;
+                      Pin = eventLocation;
+                    } else{
+                      Pin = "None";
+                    }
+
                 }
             }
 

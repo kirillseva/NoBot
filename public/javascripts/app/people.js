@@ -34,7 +34,7 @@ $( "#peopleForm" ).submit(function( event ) {
 			result += "</dl>";
 			$( "#people_result" ).empty().append(result);
 
-			//set pin location on map
+			//set pin location on map after checking that a 3 digit office # is returned
 			var officeLength = String(office).length;
 			if (officeLength == 3){
 					Pin = "SCR" + office;
