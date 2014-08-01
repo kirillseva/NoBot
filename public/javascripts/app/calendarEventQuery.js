@@ -219,30 +219,37 @@ function selectRoomEvent(){
 
     switch(selectedRoom) {
     case 0: //no room selected
+          Pin = "None";
           roomSelectionCounter = 0;
           updateCalendarQueryName();
           break;
       case 1: //SCR 261 selected
+          Pin = "SCR261";
           roomSelectionCounter = 1;
           updateCalendarQueryName();
           break;
       case 2: //SCR 262 selected
+          Pin = "SCR262";
           roomSelectionCounter = 2;
           updateCalendarQueryName();
           break;
       case 3: //SCR 263 selected
+          Pin = "SCR263";
           roomSelectionCounter = 3;
           updateCalendarQueryName();
           break;
       case 4: //SCR 281 selected
+          Pin = "SCR281";
           roomSelectionCounter = 4;
           updateCalendarQueryName();
           break;
       case 5: //SCR 282 selected
+          Pin = "SCR282";
           roomSelectionCounter = 5;
           updateCalendarQueryName();
           break;
       case 6: //Coach Library selected
+          Pin = "SCRLibrary";
           roomSelectionCounter = 6;
           updateCalendarQueryName();
           break;
