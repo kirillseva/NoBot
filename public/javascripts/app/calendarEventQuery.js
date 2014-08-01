@@ -61,7 +61,6 @@ function determineCurrentEvents() {
         var entry = parseTime(value);
         console.log(idx);
         console.log(entry);
-        if (entry.)
       });
     }
   });
