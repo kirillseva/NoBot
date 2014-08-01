@@ -260,22 +260,22 @@ function findRoom(counter){
     var roomNumber = "";
     switch(counter) {
       case 0: //SCR 261 selected
-          roomNumber = "SCR 261";
+          roomNumber = "SCR261";
           break;
       case 1: //SCR 262 selected
-          roomNumber = "SCR 262";
+          roomNumber = "SCR262";
           break;
       case 2: //SCR 263 selected
-          roomNumber = "SCR 263";
+          roomNumber = "SCR263";
           break;
       case 3: //SCR 281 selected
-          roomNumber = "SCR 281";
+          roomNumber = "SCR281";
           break;
       case 4: //SCR 282 selected
-          roomNumber = "SCR 282";
+          roomNumber = "SCR282";
           break;
       case 5: //Coach Library selected
-          roomNumber = "SCR Library";
+          roomNumber = "SCRLibrary";
           break;
     }
 
@@ -365,7 +365,7 @@ $( "#eventForm" ).submit(function( event ) {
 
             for	(index = 0; index < foundEvent.length; ++index) {
                 if ((foundEvent[index].search(data.ename)) != -1 && size > 0){
-
+                    Pin = eventLocation;
                     result += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
                     result += "<b>Event Location: </b>" + eventLocation + "<br>";
                     result += "<b>Booked By: </b>" + foundCreator[index] + "<hr>";

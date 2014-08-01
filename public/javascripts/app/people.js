@@ -33,6 +33,15 @@ $( "#peopleForm" ).submit(function( event ) {
 			result += "<b>Additional info:</b> " + additional_info + "<br>";
 			result += "</dl>";
 			$( "#people_result" ).empty().append(result);
+
+			//set pin location on map
+			var officeLength = String(office).length;
+			if (officeLength == 3){
+					Pin = "SCR" + office;
+			} else{
+					Pin = "None";
+			}
+
 		}
 	}
 
