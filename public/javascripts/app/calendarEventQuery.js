@@ -210,7 +210,6 @@ function findRoom(counter){
 function askCoBotEvents(counter){
 
     eventResult = "";
-    var foundswitch = false;
     var eventNames = [String(eventName261), String(eventName262), String(eventName263), String(eventName281), String(eventName282), String(eventNameCL)];
     var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
 
@@ -254,11 +253,20 @@ $( "#eventForm" ).submit(function( event ) {
     var counter;
     var foundswitch = false;
     var eventNames = [String(eventName261), String(eventName262), String(eventName263), String(eventName281), String(eventName282), String(eventNameCL)];
+    var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
 
-    //set flag if event is found and print feedback heading
-    if ((String(eventNames).search(data.ename)) != -1){
+    var searchTerm = data.ename;
+    var size = searchTerm.length;
+
+//    console.log(searchTerm);
+//    console.log(size);
+
+//    var t = (String(eventNames).search(data.ename));
+//    console.log("t: "+ t);
+
+    //set flag if event is found and searchTerm is at least 1 character long
+    if ((String(eventNames).search(data.ename)) != -1 && size > 0){
         foundswitch = true;
-        var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
 
     }
 
@@ -267,7 +275,7 @@ $( "#eventForm" ).submit(function( event ) {
 
         //check if entered string is in any of the MSE SCR google calendar events
         var found = eventNames[counter].search(data.ename);
-        if (found != -1) {
+        if (found != -1 && size > 0) {
 
 //            console.log(eventNames[counter]);
 //            console.log(counter);
@@ -279,7 +287,7 @@ $( "#eventForm" ).submit(function( event ) {
             var foundCreator = creatorNames[counter].split(",");
 
             for	(index = 0; index < foundEvent.length; ++index) {
-                if ((foundEvent[index].search(data.ename)) != -1){
+                if ((foundEvent[index].search(data.ename)) != -1 && size > 0){
 
                     result += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
                     result += "<b>Event Location: </b>" + eventLocation + "<br>";
