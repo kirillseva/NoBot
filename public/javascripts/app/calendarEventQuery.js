@@ -16,27 +16,27 @@ var eventResult = "";
 
 var calendarData = {
   SCR261: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   },
   SCR262: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   },
   SCR263: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   },
   SCR281: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   },
   SCR282: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   },
   SCRLibrary: {
-    currentEvent: "",
+    currentEvent: "free!",
     raw: ""
   }
 };
@@ -52,6 +52,16 @@ function determineCurrentEvents() {
     var data = val.raw.dateTime;
     console.log(i);
     console.log(data);
+    var first = parseTime(data[0]);
+    if (first.hours > h) {
+      console.log("first too late");
+      calendarData[i].currentEvent = "free!";
+    }
+    else {
+      jQuery.each(data, function(idx, value){
+
+      });
+    }
   });
 }
 

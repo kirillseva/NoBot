@@ -145,9 +145,9 @@ getLoc = function() {
 };
 
 findEvent = function(room) {
-  var result = "...";
-  if (room = "SCR261") {
-    
+  var result = "";
+  if (calendarData[room] != null) {
+    result = calendarData[room].currentEvent;
   }
   return result;
 }

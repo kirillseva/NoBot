@@ -66,7 +66,17 @@ $(function() {
       };
     }
   }).data('gridster');
-  $('.js-serialize').on('click', saveLayout());
+
+  saveLayout();
+
+  $('.js-serialize').on('click', function() {
+    var url = "/saveLayout";
+    var s = {};
+    s.task = $(location).attr('pathname');
+    s.widgets = gridster.serialize();
+    send(url, s);
+    console.log("saved!");
+  });
 
   $('.js-restore-default').on('click', function() {
     var url = "/restoreDefault";
