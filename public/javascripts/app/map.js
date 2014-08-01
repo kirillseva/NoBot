@@ -28,7 +28,7 @@ var SCRG300 = {
   },
   SCR265: {
     x: 800,
-    y: 1180
+    y: 1190
   },
   SCR281: {
     x: 640,
@@ -212,6 +212,21 @@ function getDistance(a, b) {
   return Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 };
 
+function drawEventName(i, val) {
+  var text = findEvent(i);
+  var start = 0;
+  var step = 11;
+  var it = 1;
+  ctx.font = "10pt Helvetica Neue";
+  ctx.fillStyle="#2c3e50";
+  while (start < text.length) {
+    var t = text.substr(start, step);
+    start += step;
+    ctx.fillText(t, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y + 11*it);
+    it++;
+  }
+}
+
 function showPOI() {
   jQuery.each(SCRG300, function(i, val) {
     var dist = getDistance(val, robot);
@@ -223,17 +238,15 @@ function showPOI() {
         ctx.font = "10pt Helvetica Neue";
         ctx.fillStyle="#2c3e50";
         var text = findEvent(i);
-        ctx.fillText(text, w/2 + (val.x - robot.x)*0.6 - 40, h/2 + (val.y - robot.y)*0.6 + 10);
+        ctx.fillText(text, w/2 + (val.x - robot.x)*0.6 - 40, h/2 + (val.y - robot.y)*0.6 + 12);
       }
     } else {
       if (dist < POIradius) {
         ctx.font = "14pt Helvetica Neue";
         ctx.fillStyle="#2c3e50";
         ctx.fillText(i, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y);
-        ctx.font = "10pt Helvetica Neue";
-        ctx.fillStyle="#2c3e50";
-        var text = findEvent(i);
-        ctx.fillText(text, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y + 10);
+        drawEventName(i, val);
+        // ctx.fillText(text, w/2 + val.x - robot.x - 40, h/2 + val.y - robot.y + 10);
       };
     }
   });

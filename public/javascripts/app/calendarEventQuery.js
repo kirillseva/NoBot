@@ -50,18 +50,29 @@ function determineCurrentEvents() {
   var s = today.getSeconds();
   jQuery.each(calendarData, function(i, val) {
     var data = val.raw.dateTime;
-    console.log(i);
+    // console.log(i);
     var first = parseTime(data[0]);
     if (first.hours > h) {
       console.log("first too late");
-      calendarData[i].currentEvent = "free!";
+      calendarData[i].currentEvent = "freee!";
     }
     else {
-      jQuery.each(data, function(idx, value){
-        var entry = parseTime(value);
-        console.log(idx);
-        console.log(entry);
-      });
+      for (var idx = 1; idx < data.length; idx+=2) {
+        var nicetimeEnd = parseTime(data[idx]);
+        var nicetimeBeg = parseTime(data[idx-1]);
+        console.log(nicetimeEnd);
+        var curtime = 100*h + m;
+        var eventTimeBeg = 100*nicetimeBeg.hours + nicetimeBeg.mins;
+        var eventTimeEnd = 100*nicetimeEnd.hours + nicetimeEnd.mins;
+        // console.log("cur: ");
+        // console.log(curtime);
+        // console.log(eventTimeBeg);
+        // console.log(eventTimeEnd);
+        if (eventTimeBeg < curtime && eventTimeEnd > curtime) {
+          //got an event!
+          calendarData[i].currentEvent = val.raw.summary[(idx-1)/2];
+        }
+      }
     }
   });
 }
