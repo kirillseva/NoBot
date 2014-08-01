@@ -51,7 +51,6 @@ function determineCurrentEvents() {
   jQuery.each(calendarData, function(i, val) {
     var data = val.raw.dateTime;
     console.log(i);
-    console.log(data);
     var first = parseTime(data[0]);
     if (first.hours > h) {
       console.log("first too late");
@@ -59,7 +58,10 @@ function determineCurrentEvents() {
     }
     else {
       jQuery.each(data, function(idx, value){
-
+        var entry = parseTime(value);
+        console.log(idx);
+        console.log(entry);
+        if (entry.)
       });
     }
   });
