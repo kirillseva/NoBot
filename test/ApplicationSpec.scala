@@ -93,13 +93,5 @@ class ApplicationSpec extends Specification {
       }
     }
 	
-	   "should return data about the person from database" in {
-      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
-        var result  = route( FakeRequest( GET, "/selectPerson").withSession("email"->"CEO@cobot.com")).get
-        status(result) must equalTo(200)
-		contentType(result) must beSome("application/json")
-      }
-    }
-
   }
 }
