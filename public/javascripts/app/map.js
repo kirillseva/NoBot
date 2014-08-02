@@ -255,9 +255,79 @@ function showPOI() {
 function draw() {
   ctx.drawImage(background, robot.x - w/2, robot.y - h/2, w, h, 0, 0, w, h);
   showPOI();
+
+  //showing pin location and visual cues on the border of the map
   if (Pin != "None") {
     var pinloc = SCRG300[Pin];
-    ctx.drawImage(pinimage, w/2 + pinloc.x - robot.x - 20, h/2 + pinloc.y - robot.y + 10, 30, 30);
+    var outta_screen = false;
+    var disposition = {
+      horiz: false,
+      vert: false
+    }
+    if (Math.abs(pinloc.x - robot.x) > w/2 - 15) {
+      outta_screen = true;
+      disposition.horiz = true;
+    }
+    if (Math.abs(pinloc.y - robot.y) > h/2 - 15) {
+      outta_screen = true;
+      disposition.vert = true;
+    }
+
+    if (outta_screen) {
+      var hh = 2*(pinloc.y - robot.y)*(pinloc.x - robot.x)/w;
+      var ww = 2*(pinloc.y - robot.y)*(pinloc.x - robot.x)/h;
+      ctx.strokeStyle = "red";
+      ctx.fillStyle = "red";
+      ctx.globalAlpha = 0.6;
+      ctx.beginPath();
+      if (disposition.horiz){
+        if (pinloc.x < robot.x) {
+          ctx.moveTo(0, h/2 - hh - 30);
+          ctx.lineTo(0, h/2 - hh - 10);
+        } else {
+          ctx.moveTo(w, h/2 + hh - 30);
+          ctx.lineTo(w, h/2 + hh - 10);
+        }
+      }
+      if (disposition.vert){
+        if (pinloc.y < robot.y) {
+          ctx.moveTo(w/2 - ww - 10, 0);
+          ctx.lineTo(w/2 - ww + 10, 0);
+        } else {
+          ctx.moveTo(w/2 + ww - 10, h);
+          ctx.lineTo(w/2 + ww + 10, h);
+        }
+      }
+      if (disposition.vert && disposition.horiz) {
+        if (pinloc.x < robot.x) {
+          if (pinloc.y < robot.y) {
+            //top left
+            ctx.moveTo(10, 0);
+            ctx.lineTo(0, 10);
+          } else {
+            //bottom left
+            ctx.moveTo(0, h-10);
+            ctx.lineTo(10, h);
+          }
+        } else {
+          if (pinloc.y < robot.y) {
+            //top right
+            ctx.moveTo(w-10, 0);
+            ctx.lineTo(w, 10);
+          } else {
+            //bottom right
+            ctx.moveTo(w, h-10);
+            ctx.lineTo(w-10, h);
+          }
+        }
+      }
+      ctx.lineWidth = 10;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    // that was the section responsible for drawing red lines on the border
+
+    ctx.drawImage(pinimage, w/2 + pinloc.x - robot.x - 20, h/2 + pinloc.y - robot.y - 45, 30, 30);
   };
   robot.render();
 }
