@@ -2,7 +2,7 @@
       <label>Ask CoBot</label>
 
       <br>
-	
+
 
            <select onchange="OnSelectionChange (this)">
                 <option value="Who">Who</option>
@@ -28,11 +28,15 @@
 
       <div id="what" style="display:none">
           <form id="eventForm" action="selectEvent">
+                Event name:
 
                 <div class="form-group">
-                    Event name: <input type="text" class="form-control" name="ename">
+
+                  <button type="submit" class="btn btn-primary btn-sm" onclick="" style="float: right; height: 43px;">Search</button>
+                      <input type="text" class="form-control" name="ename" style="width: 75%;">
+
                 </div>
-                <center><button type="submit" class="btn btn-primary btn-sm" onclick="">Search</button></center>
+                <!-- <center></center> -->
 
           </form>
 
@@ -50,7 +54,7 @@
                  <option value="SCR_282">SCR 282</option>
                  <option value="Coach_Library">SCR Library</option>
                </select>
-
+              <p></p>
            <center><button type="button" class="btn btn-primary btn-sm" onclick="selectRoomEvent()">Search</button></center>
 
 
