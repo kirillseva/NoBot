@@ -92,6 +92,6 @@ class ApplicationSpec extends Specification {
         contentType(result) must beSome("application/json")
       }
     }
-
+	
   }
 }
