@@ -334,11 +334,15 @@ function draw() {
 
 $(document).ready(function(e) {
   var startx, starty, map;
-  startx = document.getElementById("map").getAttribute("data-sizex");
-  starty = document.getElementById("map").getAttribute("data-sizey");
-  set_canvas(startx, starty);
-  setInterval(getLoc, 500);
-  setInterval(updateLoc, 10);
+  try {
+    startx = document.getElementById("map").getAttribute("data-sizex");
+    starty = document.getElementById("map").getAttribute("data-sizey");
+    set_canvas(startx, starty);
+    setInterval(getLoc, 500);
+    setInterval(updateLoc, 10);
+  } catch(err) {
+    ;
+  }
 
 
 });

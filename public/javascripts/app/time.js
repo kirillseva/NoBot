@@ -13,7 +13,11 @@ function startTime() {
     // add a zero in front of numbers<10
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('time').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+    try {
+      document.getElementById('time').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+    } catch(err) {
+      ;
+    }
     t = setTimeout(function () {
         startTime()
     }, 500);

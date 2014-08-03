@@ -50,22 +50,22 @@ function determineCurrentEvents() {
   var s = today.getSeconds();
   jQuery.each(calendarData, function(i, val) {
     var data = val.raw.dateTime;
-    var first = parseTime(data[0]);
-    if (first.hours > h) {
-      console.log("first too late");
-      calendarData[i].currentEvent = "free!";
-    }
-    else {
-      for (var idx = 1; idx < data.length; idx+=2) {
-        var nicetimeEnd = parseTime(data[idx]);
-        var nicetimeBeg = parseTime(data[idx-1]);
-        console.log(nicetimeEnd);
-        var curtime = 100*h + m;
-        var eventTimeBeg = 100*nicetimeBeg.hours + nicetimeBeg.mins;
-        var eventTimeEnd = 100*nicetimeEnd.hours + nicetimeEnd.mins;
-        if (eventTimeBeg < curtime && eventTimeEnd > curtime) {
-          //got an event!
-          calendarData[i].currentEvent = val.raw.summary[(idx-1)/2];
+    if (data.length > 0) {
+      var first = parseTime(data[0]);
+      if (first.hours > h) {
+        calendarData[i].currentEvent = "free!";
+      }
+      else {
+        for (var idx = 1; idx < data.length; idx+=2) {
+          var nicetimeEnd = parseTime(data[idx]);
+          var nicetimeBeg = parseTime(data[idx-1]);
+          var curtime = 100*h + m;
+          var eventTimeBeg = 100*nicetimeBeg.hours + nicetimeBeg.mins;
+          var eventTimeEnd = 100*nicetimeEnd.hours + nicetimeEnd.mins;
+          if (eventTimeBeg < curtime && eventTimeEnd > curtime) {
+            //got an event!
+            calendarData[i].currentEvent = val.raw.summary[(idx-1)/2];
+          }
         }
       }
     }
@@ -111,6 +111,7 @@ function updateCalendarQueryName(){
 // Get google calendar json requests on loading
 $(document).ready(function(e) {
   $.getJSON( "/calendarC261", function( json1 ) {
+    console.log("test");
     creator261 = json1.displayName;
     calendarData["SCR261"].raw = json1;
     eventName261 = json1.summary;
