@@ -347,9 +347,8 @@ $( "#eventForm" ).submit(function( event ) {
     var size = searchTerm.length;
 
     //set flag if event is found and searchTerm is at least 1 character long
-    if ((String(eventNames).search(data.ename)) != -1 && size > 0){
+    if ((String(eventNames).toLowerCase().search(searchTerm.toLowerCase())) != -1 && size > 0){
         foundswitch = true;
-
     }
 
     var pinFoundSwitch = false;
@@ -358,7 +357,7 @@ $( "#eventForm" ).submit(function( event ) {
     for	(counter = 0; counter < eventNames.length; ++counter) {
 
         //check if entered string is in any of the MSE SCR google calendar events
-        var found = eventNames[counter].search(data.ename);
+        var found = eventNames[counter].toLowerCase().search(searchTerm.toLowerCase());
         if (found != -1 && size > 0) {
 
             var eventLocation = findRoom(counter);
@@ -368,7 +367,7 @@ $( "#eventForm" ).submit(function( event ) {
             var foundCreator = creatorNames[counter].split(",");
 
             for	(index = 0; index < foundEvent.length; ++index) {
-                if ((foundEvent[index].search(data.ename)) != -1 && size > 0){
+                if ((foundEvent[index].toLowerCase().search(searchTerm.toLowerCase())) != -1 && size > 0){
                     result += "<b>Event Name: </b>" + foundEvent[index] + "<br>";
                     result += "<b>Event Location: </b>" + eventLocation + "<br>";
                     result += "<b>Booked By: </b>" + foundCreator[index] + "<hr>";
