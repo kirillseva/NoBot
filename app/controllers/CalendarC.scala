@@ -18,17 +18,25 @@ import java.text._;
 
 object CalendarC extends Controller {
 
-  //Get current date
+
+  /**
+   * Get current date.
+   */
   var cal = Calendar.getInstance();
   cal.add(Calendar.DATE, 0);
   var format1 = new SimpleDateFormat("yyyy-MM-dd");
   var currentDate = format1.format(cal.getTime());
 
-  //Set upper and lower time boundaries for google calendar api window
+  /**
+   * Set upper and lower time boundaries for google calendar api window.
+   */
   val timeMin = currentDate + "T00%3A00%3A00-04%3A00"
   val timeMax = currentDate + "T23%3A59%3A59-04%3A00"
 
-  //Google calendar API requests for 300 SCR meeting rooms
+
+  /**
+   * Google calendar API requests for 300 SCR meeting rooms.
+   */
 
   def googleCalendarSCR261 = Action.async { implicit request =>
 
@@ -114,6 +122,9 @@ object CalendarC extends Controller {
       }
   }
 
+  /**
+   * Ask CoBot "What" event name text field search request handler.
+   */
   def getEvent = Action(parse.json) {
     implicit request =>
     val ename: String = (request.body \ "ename").as[String]
