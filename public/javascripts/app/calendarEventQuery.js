@@ -1,3 +1,4 @@
+//Initial variable declarations
 var creator261 = "Sammy Mudede";
 var creator262 = "Sammy Mudede";
 var creator263 = "Sammy Mudede";
@@ -41,8 +42,7 @@ var calendarData = {
   }
 };
 
-//var times = "11:00am";
-
+// Determine Current Events
 function determineCurrentEvents() {
   var today = new Date();
   var h = today.getHours();
@@ -50,7 +50,6 @@ function determineCurrentEvents() {
   var s = today.getSeconds();
   jQuery.each(calendarData, function(i, val) {
     var data = val.raw.dateTime;
-    // console.log(i);
     var first = parseTime(data[0]);
     if (first.hours > h) {
       console.log("first too late");
@@ -64,10 +63,6 @@ function determineCurrentEvents() {
         var curtime = 100*h + m;
         var eventTimeBeg = 100*nicetimeBeg.hours + nicetimeBeg.mins;
         var eventTimeEnd = 100*nicetimeEnd.hours + nicetimeEnd.mins;
-        // console.log("cur: ");
-        // console.log(curtime);
-        // console.log(eventTimeBeg);
-        // console.log(eventTimeEnd);
         if (eventTimeBeg < curtime && eventTimeEnd > curtime) {
           //got an event!
           calendarData[i].currentEvent = val.raw.summary[(idx-1)/2];
@@ -90,24 +85,7 @@ function parseTime(timestring){
   return result;
 }
 
-function updateCalendarQuery(){
-  if (roomSelectionCounter == 0) {
-    document.getElementById('event_creator').innerHTML = "Please select a room!";
-  } else if (roomSelectionCounter == 1) {
-      document.getElementById('event_creator').innerHTML = creator261;
-  } else if (roomSelectionCounter == 2) {
-      document.getElementById('event_creator').innerHTML = creator262;
-  } else if (roomSelectionCounter == 3) {
-      document.getElementById('event_creator').innerHTML = creator263;
-  } else if (roomSelectionCounter == 4) {
-      document.getElementById('event_creator').innerHTML = creator281;
-  } else if (roomSelectionCounter == 5) {
-      document.getElementById('event_creator').innerHTML = creator282;
-  } else if (roomSelectionCounter == 6) {
-      document.getElementById('event_creator').innerHTML = creatorCL;
-  }
-}
-
+// Update event names to askCoBotFeedback view
 function updateCalendarQueryName(){
   if (roomSelectionCounter == 0) {
     document.getElementById('event_name').innerHTML = "Please select a room!";
@@ -130,15 +108,12 @@ function updateCalendarQueryName(){
 
 }
 
-
+// Get google calendar json requests on loading
 $(document).ready(function(e) {
   $.getJSON( "/calendarC261", function( json1 ) {
     creator261 = json1.displayName;
     calendarData["SCR261"].raw = json1;
     eventName261 = json1.summary;
-    console.log(json1);
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
@@ -146,8 +121,6 @@ $(document).ready(function(e) {
     creator262 = json2.displayName;
     calendarData["SCR262"].raw = json2;
     eventName262 = json2.summary;
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
@@ -155,8 +128,6 @@ $(document).ready(function(e) {
     creator263 = json3.displayName;
     calendarData["SCR263"].raw = json3;
     eventName263 = json3.summary;
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
@@ -164,8 +135,6 @@ $(document).ready(function(e) {
     creator281 = json4.displayName;
     calendarData["SCR281"].raw = json4;
     eventName281 = json4.summary;
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
@@ -173,8 +142,6 @@ $(document).ready(function(e) {
     creator282 = json5.displayName;
     calendarData["SCR282"].raw = json5;
     eventName282 = json5.summary;
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
@@ -182,50 +149,14 @@ $(document).ready(function(e) {
     creatorCL = json6.displayName;
     calendarData["SCRLibrary"].raw = json6;
     eventNameCL = json6.summary;
-//    times = jsonC.dateTime;
-    updateCalendarQuery();
     updateCalendarQueryName();
   })
 
   setTimeout(function() { determineCurrentEvents(); }, 500);
 });
 
-function selectRoomCreator(){
-  var selectedRoom = document.getElementById("roomNo").selectedIndex;
-
-    switch(selectedRoom) {
-    case 0: //no room selected
-          roomSelectionCounter = 0;
-          updateCalendarQuery();
-          break;
-      case 1: //SCR 261 selected
-          roomSelectionCounter = 1;
-          updateCalendarQuery();
-          break;
-      case 2: //SCR 262 selected
-          roomSelectionCounter = 2;
-          updateCalendarQuery();
-          break;
-      case 3: //SCR 263 selected
-          roomSelectionCounter = 3;
-          updateCalendarQuery();
-          break;
-      case 4: //SCR 281 selected
-          roomSelectionCounter = 4;
-          updateCalendarQuery();
-          break;
-      case 5: //SCR 282 selected
-          roomSelectionCounter = 5;
-          updateCalendarQuery();
-          break;
-      case 6: //Coach Library selected
-          roomSelectionCounter = 6;
-          updateCalendarQuery();
-          break;
-    }
-
-}
-
+// Update map pin for Ask CoBot "What" event search from dropdown selection.
+//Trigger selected room event names to show in askCoBotFeedback view
 function selectRoomEvent(){
   var selectedRoom = document.getElementById("roomNoName").selectedIndex;
 
@@ -268,6 +199,8 @@ function selectRoomEvent(){
     }
 }
 
+// Assign event location to room number for for Ask CoBot "What" event search
+// from "Event name" text field search.
 function findRoom(counter){
     var roomNumber = "";
     switch(counter) {
@@ -325,6 +258,7 @@ function askCoBotEvents(counter){
     return eventResult;
 }
 
+//Show results based on text field event search.
 // Attach a submit handler to the  Event Name form
 $( "#eventForm" ).submit(function( event ) {
   // Stop form from submitting normally
@@ -335,7 +269,7 @@ $( "#eventForm" ).submit(function( event ) {
   ename = $form.find( "input[name='ename']" ).val(),
   action_url = $form.attr( "action" );
 
-  // This is a function that processes response
+  // Process response
   var onSuccess = function(data){
 
     var result = "";
@@ -345,13 +279,12 @@ $( "#eventForm" ).submit(function( event ) {
     var creatorNames = [String(creator261), String(creator262), String(creator263), String(creator281), String(creator282), String(creatorCL)];
     var searchTerm = data.ename;
     var size = searchTerm.length;
+    var pinFoundSwitch = false;
 
     //set flag if event is found and searchTerm is at least 1 character long
     if ((String(eventNames).toLowerCase().search(searchTerm.toLowerCase())) != -1 && size > 0){
         foundswitch = true;
     }
-
-    var pinFoundSwitch = false;
 
     //iterate through every MSE SCR google calendar
     for	(counter = 0; counter < eventNames.length; ++counter) {
@@ -361,7 +294,6 @@ $( "#eventForm" ).submit(function( event ) {
         if (found != -1 && size > 0) {
 
             var eventLocation = findRoom(counter);
-
             var index;
             var foundEvent = eventNames[counter].split(",");
             var foundCreator = creatorNames[counter].split(",");
@@ -379,15 +311,13 @@ $( "#eventForm" ).submit(function( event ) {
                     } else{
                       Pin = "None";
                     }
-
                 }
             }
-
         } else {
               if (!foundswitch){
                   result = "Event Not Found<br>";
               }
-            }
+          }
     }
 
     $( "#event_result" ).empty().append(result)
