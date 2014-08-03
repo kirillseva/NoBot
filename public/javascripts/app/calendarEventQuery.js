@@ -54,7 +54,7 @@ function determineCurrentEvents() {
     var first = parseTime(data[0]);
     if (first.hours > h) {
       console.log("first too late");
-      calendarData[i].currentEvent = "freee!";
+      calendarData[i].currentEvent = "free!";
     }
     else {
       for (var idx = 1; idx < data.length; idx+=2) {
