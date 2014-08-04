@@ -39,12 +39,13 @@ object Time {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          replace into savedtime (email, time) values
-          ( {email}, {time} )
+        replace into savedtime (email, time) values
+        ( {email}, {time} )
         """
       ).on(
         "email" -> t.email,
         "time" -> t.time
       ).executeUpdate()
+    }
   }
 }

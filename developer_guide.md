@@ -40,7 +40,7 @@ Let's create a new file in the */views/* folder called **time.scala.html**.
 Our view would look very simple.
 
 ```html
-<div id="clock">00:00:00</div>
+<div id="clock" class="saveTime">00:00:00</div>
 ```
 
 Yes, that's it for the view! We put *00:00:00* just as a placeholder text for testing.
@@ -96,13 +96,24 @@ function startTime() {
     // add a zero in front of numbers<10
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+    try {
+      document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+    } catch(err) {
+      ;
+    }
     t = setTimeout(function () {
         startTime()
     }, 500);
 }
 
-startTime();
+$(document).ready(function(e) {
+  if (document.getElementById('time') != null)
+  {
+    // the time widget is on the screen
+    startTime();
+  }
+});
+
 ```
 
 Now, we need to add this script to our main view. Add this line at the end of the **main.scala.html**.
@@ -205,13 +216,14 @@ object Time {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          replace into savedtime (email, time) values
-          ( {email}, {time} )
+        replace into savedtime (email, time) values
+        ( {email}, {time} )
         """
       ).on(
         "email" -> t.email,
         "time" -> t.time
       ).executeUpdate()
+    }
   }
 }
 ```
@@ -220,3 +232,103 @@ This model provides us with convinient methods to store and retrieve data from
 the database, and also takes care of the case where there is no value in the DB.
 
 Now, let's create the corresponding controller.
+
+Create a new file under the controllers folder and call it **TimeC.scala**
+
+```java
+package controllers
+
+import play.api._
+import play.api.mvc._
+import play.api.data._
+import play.api.libs.json.Json
+
+import models._
+
+object TimeC extends Controller {
+  def save = Action(parse.json) { request =>
+    val time = (request.body \ "time").as[String]
+    val t:Time = Time(request.session.get("email").get, time)
+    Time.saveTime(t)
+    val json = Json.toJson(Map("saved" -> true))
+    Ok(json)
+  }
+
+  def get = Action { request =>
+    val savedtime = Time.readTime(request.session.get("email").get)
+    val json = Json.toJson(
+      Map(
+        "savedtime" -> savedtime.get.time
+      )
+    )
+    Ok(json)
+  }
+}
+```
+
+Here we define two actions - to save time and to load time. We need to
+add those two actions to the routes file in order to use them. Let's open the **routes** file,
+located in */conf/* folder, and add these lines at the end of the file.
+
+```
+# Time specific actions
+GET      /getTime                   controllers.TimeC.get
+POST     /saveTime                  controllers.TimeC.save
+```
+
+Alright! We are almost there!
+We already have our model, view and controller ready. Now let's just add
+some javascript magic to make the widget interactive!
+Make your **time.js** look like this code snippet, refresh, and enjoy!
+
+```javascript
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    try {
+      document.getElementById('clock').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+    } catch(err) {
+      ;
+    }
+    t = setTimeout(function () {
+        startTime()
+    }, 500);
+}
+
+$(document).ready(function(e) {
+  if (document.getElementById('time') != null)
+  {
+    // the time widget is on the screen
+
+    $.getJSON( "/getTime", function( json ) {
+      var t = json.savedtime
+      document.getElementById('savedTime').innerHTML = t;
+    })
+    startTime();
+  }
+});
+
+
+$('.sendTime').on('click', function() {
+  var url = "/saveTime";
+  var temp = document.getElementById('clock').innerHTML;
+  var s = {};
+  s.time = temp.substr(4,8);
+  send(url, s);
+  document.getElementById('savedTime').innerHTML = s.time;
+});
+```
+
+Try clicking on the live clock and see that the value is indeed saved for your future reference!

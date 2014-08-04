@@ -39,3 +39,7 @@ POST     /restoreDefault            controllers.WidgetC.restoreDefault
 
 POST     /addWidget                 controllers.WidgetC.addWidget
 POST     /removeWidget              controllers.WidgetC.removeWidget
+
+# Time specific actions
+GET      /getTime                   controllers.TimeC.get
+POST     /saveTime                  controllers.TimeC.save

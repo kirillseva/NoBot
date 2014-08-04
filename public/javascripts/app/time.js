@@ -23,4 +23,25 @@ function startTime() {
     }, 500);
 }
 
-startTime();
+$(document).ready(function(e) {
+  if (document.getElementById('time') != null)
+  {
+    // the time widget is on the screen
+
+    $.getJSON( "/getTime", function( json ) {
+      var t = json.savedtime
+      document.getElementById('savedTime').innerHTML = t;
+    })
+    startTime();
+  }
+});
+
+
+$('.sendTime').on('click', function() {
+  var url = "/saveTime";
+  var temp = document.getElementById('clock').innerHTML;
+  var s = {};
+  s.time = temp.substr(4,8);
+  send(url, s);
+  document.getElementById('savedTime').innerHTML = s.time;
+});
