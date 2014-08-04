@@ -1,6 +1,6 @@
-var loc = "Яуза";
+var loc = "";
 var tmp = -273;
-var desc = "Это насилие!";
+var desc = "";
 var celcius = true;
 
 function updateWeather(){

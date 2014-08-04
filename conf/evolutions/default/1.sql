@@ -6,8 +6,14 @@ drop table if exists widget;
 drop table if exists layout;
 drop table if exists user;
 drop table if exists people;
+drop table if exists savedtime;
 
 # --- !Ups
+
+create table savedtime (
+  email                     varchar(255) not null primary key,
+  time                      varchar(255) not null
+);
 
 create table user (
   email                     varchar(255) not null primary key,
@@ -93,14 +99,3 @@ insert into people (first_name, last_name, status, email, additional_info) value
 insert into people (first_name, last_name, status, email, additional_info) values ('Konstantin', 'Urysov', 'Student', 'kurysov@andrew.cmu.edu', 'GiftCards');
 insert into people (first_name, last_name, status, email, additional_info) values ('Sudarshan', 'Wadkar', 'Student', 'swadkar@andrew.cmu.edu', 'NIST');
 insert into people (first_name, last_name, status, email, additional_info) values ('Deepak', 'Kuttykrishnan', 'Student', 'dkuttykr@andrew.cmu.edu', 'SmartParks');
-
-
-
-
-
-
-
-
-
-
-

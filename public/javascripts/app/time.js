@@ -14,7 +14,7 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
     try {
-      document.getElementById('time').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+      document.getElementById('clock').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
     } catch(err) {
       ;
     }

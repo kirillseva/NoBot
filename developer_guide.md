@@ -40,7 +40,7 @@ Let's create a new file in the */views/* folder called **time.scala.html**.
 Our view would look very simple.
 
 ```html
-<div id="time">00:00:00</div>
+<div id="clock">00:00:00</div>
 ```
 
 Yes, that's it for the view! We put *00:00:00* just as a placeholder text for testing.
@@ -96,7 +96,7 @@ function startTime() {
     // add a zero in front of numbers<10
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
     t = setTimeout(function () {
         startTime()
     }, 500);
@@ -121,7 +121,7 @@ nicer result.
 Modify the line in the script that changes html contents.
 
 ```javascript
-document.getElementById('time').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
+document.getElementById('clock').innerHTML = "<h1>" + h + ":" + m + ":" + s + "</h1>";
 ```
 
 Now, let's reload the page.
@@ -130,3 +130,93 @@ Now, let's reload the page.
 
 And that's it! We've just created a widget that shows dynamic content on the screen
 in under 10 minutes! And we have successfully added this widget to the existing system.
+
+Now, let's add some more complexity to the widget. Let's make it so that
+if a user clicks the time it will get stored in a database. Let's also show the latest saved time under the real time.
+
+Let's modify the view a little bit. Add the following line to **time.scala.htlm**
+
+```html
+<dd> Latest saved time: </dd>
+<dt id="savedTime">---<dt>
+```
+
+Now let's work on the backend side. First, we would need a database to store the data.
+Open **1.sql** that is located in */conf/evolutions/default/*
+
+Add this line in the section of down evolutions
+
+```sql
+drop table if exists savedtime;
+```
+
+And the following - to the up evolutions section
+```sql
+create table savedtime (
+  email                     varchar(255) not null primary key,
+  time                      varchar(255) not null
+);
+```
+
+Now, let's create a model that would take care of all the database operations for us.
+Create a new file under the models folder called **Time.scala**
+
+Add the following content to the newly created file.
+
+```java
+package models
+
+import play.api.db._
+import play.api.Play.current
+import anorm._
+import anorm.SqlParser._
+import scala.language.postfixOps
+
+case class Time (email: String, time: String)
+
+object Time {
+
+  // default value for when no value is stored in the DB yet
+  var default = "No value. Yet."
+
+  //a helper method that converts result of the reading from
+  //a database to a case class, a native scala container
+  val simple = {
+    get[String]("savedtime.email") ~
+    get[String]("savedtime.time") map {
+      case email~time => Time(email, time)
+    }
+  }
+
+  def readTime(email: String): Option[Time] = {
+    var result = DB.withConnection { implicit connection =>
+      SQL("select * from savedtime where email = {email}").on(
+        "email" -> email
+      ).as(Time.simple.singleOpt)
+    }
+    //if nothing found in database - return refault value
+    if (result.isEmpty){
+      result = Some(Time(email, default))
+    }
+    result
+  }
+
+  def saveTime(t: Time) {
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+          replace into savedtime (email, time) values
+          ( {email}, {time} )
+        """
+      ).on(
+        "email" -> t.email,
+        "time" -> t.time
+      ).executeUpdate()
+  }
+}
+```
+
+This model provides us with convinient methods to store and retrieve data from
+the database, and also takes care of the case where there is no value in the DB.
+
+Now, let's create the corresponding controller.
