@@ -153,7 +153,7 @@ $(document).ready(function(e) {
     updateCalendarQueryName();
   })
 
-  setTimeout(function() { determineCurrentEvents(); }, 500);
+  setTimeout(function() { determineCurrentEvents(); }, 900);
 });
 
 // Update map pin for Ask CoBot "What" event search from dropdown selection.
