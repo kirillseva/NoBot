@@ -145,7 +145,7 @@ in under 10 minutes! And we have successfully added this widget to the existing 
 Now, let's add some more complexity to the widget. Let's make it so that
 if a user clicks the time it will get stored in a database. Let's also show the latest saved time under the real time.
 
-Let's modify the view a little bit. Add the following line to **time.scala.htlm**
+Let's modify the view a little bit. Add the following line to **time.scala.html**
 
 ```html
 <dd> Latest saved time: </dd>
