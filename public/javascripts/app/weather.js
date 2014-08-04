@@ -18,7 +18,9 @@ $.getJSON( "/weatherC", function( json ) {
   tmp = json.temp;
   loc = json.location;
   desc = json.description;
-  updateWeather();
+  if (document.getElementById('weather') != null){
+    updateWeather();
+  }
 })
 
 });
