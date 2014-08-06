@@ -163,5 +163,33 @@ class ApplicationSpec extends Specification {
         res.get.time must equalTo ("test")
       }
     }
+
+    "get Time" in {
+      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+        var result  = route( FakeRequest( GET, "/getTime").withSession("email"->"CEO@cobot.com")).get
+        status(result) must equalTo(200)
+        contentType(result) must beSome("application/json")
+      }
+    }
+
+    "widget model" in {
+      running(FakeApplication()) {
+        Widget.restoreDefault("test", "/")
+        var res = Widget.saved("/", "test")
+        res must equalTo(Widget.default)
+        var json = Json.parse("""{"task":"/","widgets":[{"id":"time","col":3,"row":2,"size_x":1,"size_y":1},{"id":"map","col":1,"row":1,"size_x":1,"size_y":1}]}""")
+        Widget.saveLayout("test", json)
+        Widget.removeWidget("map", "/", "test")
+        res = Widget.saved("/", "test")
+        var expectedRes = Seq(Widget("time", 3, 2, 1, 1))
+        res must equalTo(expectedRes)
+        Widget.removeWidget("time", "/", "test")
+        Widget.saved("/", "test") must equalTo(Widget.default)
+      }
+    }
+
+    
+
+
   }
 }

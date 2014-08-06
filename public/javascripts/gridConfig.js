@@ -30,6 +30,7 @@ saveLayout = function() {
   var s = {};
   s.task = $(location).attr('pathname');
   s.widgets = gridster.serialize();
+  console.log(s);
   send(url, s);
   console.log("saved!");
 }
