@@ -7,11 +7,13 @@ import play.api.libs.json._
 import play.api.test._
 import play.api.test.Helpers._
 
+import models._
+
 /**
- * Add your spec here.
- * You can mock out a whole application including requests, plugins etc.
- * For more information, consult the wiki.
- */
+* Add your spec here.
+* You can mock out a whole application including requests, plugins etc.
+* For more information, consult the wiki.
+*/
 
 
 @RunWith(classOf[JUnitRunner])
@@ -92,6 +94,16 @@ class ApplicationSpec extends Specification {
         contentType(result) must beSome("application/json")
       }
     }
-	
+
+
+    "return by name" in {
+      running(FakeApplication()) {
+        val Some(person) = People.returnDataByName("Jane", "Miller")
+        person.first_name must beSome("Jane")
+        person.last_name must beSome("Miller")
+        person.status must beSome("Associate Director of International Initiatives and Programs Manager")
+        person.office must beSome(273)
+      }
+    }
   }
 }
