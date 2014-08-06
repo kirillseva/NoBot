@@ -31,7 +31,7 @@ CoverallsPlugin.coverallsSettings
 
 ScoverageKeys.excludedPackages in ScoverageCompile := "<empty>;Reverse.*;.*AuthService.*;twirl/*;"
 
-ScoverageKeys.minimumCoverage := 70
+ScoverageKeys.minimumCoverage := 80
 
 ScoverageKeys.failOnMinimumCoverage := false
 
