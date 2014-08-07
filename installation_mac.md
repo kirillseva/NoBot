@@ -6,7 +6,6 @@ Here are the steps you need to do if you want to start developing for CoBot.
 1. First, check out the code from github
 
         git clone git@github.com:kirillseva/NoBot.git
-
 2. Change your working directory and mark activator as an executable file
         cd Nobot
         chmod +x activator
