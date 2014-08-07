@@ -1,12 +1,14 @@
 Installation instructions for Mac
 ================================================================================================
 
-here are the steps you need to do if you want to start developing for CoBot.
+Here are the steps you need to do if you want to start developing for CoBot.
 
 1. First, check out the code from github
+
 ```bash
 git clone git@github.com:kirillseva/NoBot.git
 ```
+
 2. Change your working directory and mark activator as an executable file
 ```sh
 cd Nobot
