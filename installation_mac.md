@@ -26,7 +26,6 @@ for alternatives.
 Here are the steps to get you started with heroku deployment.
 
 1. Download and install [Heroku toolbelt](https://devcenter.heroku.com/articles/quickstart)
-
 2. Create a new heroku app
 ```sh
 heroku create
